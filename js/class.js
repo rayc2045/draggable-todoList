@@ -125,7 +125,7 @@ class TodoApp {
       const index = $(this).closest('.item').attr('id').replace(/item_/g, '');
       const accomplishSound = new Audio(
         // 'http://noproblo.dayjo.org/ZeldaSounds/BOTW/BOTW_Fanfare_SmallItem.wav' // 使用 html 載入 audio 方式能在第一次播放無延遲，但播放中的其他操作無法播放音效
-        '/audio/BOTW_Fanfare_SmallItem.wav' // 使用 js 載入 audio 在第一次播放會有明顯延遲，但播放中的其他操作仍可繼續播放音效
+        '../audio/BOTW_Fanfare_SmallItem.wav' // 使用 js 載入 audio 在第一次播放會有明顯延遲，但播放中的其他操作仍可繼續播放音效
       );
 
       self.todolist[index].completed = !self.todolist[index].completed;
@@ -168,7 +168,7 @@ class TodoApp {
     $('.items').on('click', '.delete', function() {
       const item = $(this).closest('.item');
       const index = item.attr('id').replace(/item_/g, '');
-      const deleteSound = new Audio('/audio/BotW_Interact_sound.mp3');
+      const deleteSound = new Audio('../audio/BotW_Interact_sound.mp3');
 
       self.todolist.splice(index, 1);
       localStorage.setItem('todolist', JSON.stringify(self.todolist));
