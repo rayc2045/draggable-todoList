@@ -173,6 +173,7 @@ class TodoApp {
       self.todolist.splice(index, 1);
       localStorage.setItem('todolist', JSON.stringify(self.todolist));
       item.remove();
+      if (!self.todolist.length) localStorage.clear();
       self.updateTasks();
       deleteSound.play();
     });
