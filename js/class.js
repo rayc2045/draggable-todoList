@@ -2,8 +2,14 @@
 
 class TodoApp {
 	constructor() {
-    this.todolist = JSON.parse(localStorage.getItem('todolist')) || [];
-		this.bodyElement = document.querySelector('body');
+		this.todolist = JSON.parse(localStorage.getItem('todolist')) || [];
+		this.accomplishSound = new Audio(
+			// 'http://noproblo.dayjo.org/ZeldaSounds/BOTW/BOTW_Fanfare_SmallItem.wav' // 使用 html 載入 audio 方式能在第一次播放無延遲，但播放中的其他操作無法播放音效
+			'../audio/BOTW_Fanfare_SmallItem.wav' // 使用 js 載入 audio 在第一次播放會有明顯延遲，但播放中的其他操作仍可繼續播放音效
+		);
+		this.deleteSound = new Audio('../audio/BotW_Interact_sound.mp3');
+		this.dragSound = new Audio('../audio/drag.mp3');
+		this.dropSound = new Audio('../audio/drop.mp3');
 		this.events();
 	}
 
@@ -18,7 +24,6 @@ class TodoApp {
 		// jQueryUISortable();
 		this.sortablejs();
 		this.rearrangeTodolist();
-    // this.hideAddressBar();
 	}
 
 	debug() {
@@ -130,11 +135,7 @@ class TodoApp {
 		const self = this;
 
 		$('.items').on('click', 'input', function() {
-      const index = $(this).closest('.item').attr('id').replace(/item_/g, '');
-      const accomplishSound = new Audio(
-        // 'http://noproblo.dayjo.org/ZeldaSounds/BOTW/BOTW_Fanfare_SmallItem.wav' // 使用 html 載入 audio 方式能在第一次播放無延遲，但播放中的其他操作無法播放音效
-        '../audio/BOTW_Fanfare_SmallItem.wav' // 使用 js 載入 audio 在第一次播放會有明顯延遲，但播放中的其他操作仍可繼續播放音效
-      );
+			const index = $(this).closest('.item').attr('id').replace(/item_/g, '');
 
 			self.todolist[index].completed = !self.todolist[index].completed;
 			localStorage.setItem('todolist', JSON.stringify(self.todolist));
@@ -142,7 +143,8 @@ class TodoApp {
 
 			if ($(this).is(':checked')) {
 				// $('.accomplishSound')[0].play();
-				accomplishSound.play();
+				self.accomplishSound.currentTime = 0;
+				self.accomplishSound.play();
 			}
 		});
 	}
@@ -173,15 +175,15 @@ class TodoApp {
 
 		$('.items').on('click', '.delete', function() {
 			const item = $(this).closest('.item');
-      const index = item.attr('id').replace(/item_/g, '');
-      const deleteSound = new Audio('../audio/BotW_Interact_sound.mp3');
+			const index = item.attr('id').replace(/item_/g, '');
 
 			self.todolist.splice(index, 1);
 			localStorage.setItem('todolist', JSON.stringify(self.todolist));
 			item.remove();
 			if (!self.todolist.length) localStorage.removeItem('todolist'); // It's not same to clear()
-      self.updateTasks();
-			deleteSound.play();
+			self.updateTasks();
+			self.deleteSound.currentTime = 0;
+			self.deleteSound.play();
 		});
 	}
 
@@ -204,6 +206,10 @@ class TodoApp {
 			ghostClass: 'dragging' // 拖曳時，給予物件的類別
 			// chosenClass: "dragging",  // 選定時，給予物件的類別
 		});
+
+		$('.items').on('mousedown', '.handle', () => {
+			this.dragSound.play();
+		});
 	}
 
 	rearrangeTodolist() {
@@ -219,18 +225,10 @@ class TodoApp {
 
 				// 重置 html 中項目的 id 值
 				$('.item').eq(i).attr('id', `item_${i}`);
+				self.dropSound.currentTime = 0;
+				self.dropSound.play();
 			}
 		});
-	}
-
-	hideAddressBar() {
-		if (document.documentElement.scrollHeight <= document.documentElement.clientHeight) {
-			this.bodyElement.style.height = `${document.documentElement.clientWidth / screen.width * screen.height}px`;
-		}
-
-		setTimeout(() => {
-			window.scrollTo(0, 1);
-		}, 0);
 	}
 }
 
