@@ -215,6 +215,7 @@ class TodoApp {
 		});
 
 		$('.items').on('mousedown', '.handle', () => {
+			this.dragSound.currentTime = 0;
 			this.dragSound.play();
 		});
 	}
