@@ -11,5 +11,5 @@
 - 設計上讓文字編輯時加入底線，提升使用者操作流暢度
 - 淡化勾選方塊顏色，讓視線更集中於任務
 - 使用 [SortableJS](https://github.com/SortableJS/Sortable) 做出任務拖拉功能，並搭配演算法做出 To-do List 資料排序
-- 加入拖移、刪除任務，甚至達成任務時出現的《薩爾達 — 荒野之息》經典音效，讓操作體驗更有感！
+- 加入新增、拖移、刪除任務，甚至達成任務時出現的《薩爾達 — 荒野之息》經典音效，讓操作體驗更有感！
 - [CodePen 連結](https://codepen.io/raychang2017/full/pXqRLo)（因安全疑慮，CodePen 無法使用 LocalStorage，有 LocalStorage 的版本在[這裡](https://raychang2017.github.io/draggable-localStorage-todoList/)）

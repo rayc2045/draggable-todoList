@@ -132,6 +132,8 @@ class TodoApp {
 				localStorage.setItem('todolist', JSON.stringify(self.todolist));
 				self.updateTasks();
 				$(this).val('');
+				self.dropSound.currentTime = 0;
+				self.dropSound.play();
 			}
 		});
 	}
