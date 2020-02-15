@@ -12,4 +12,4 @@
 - 淡化勾選方塊顏色，讓視線更集中於任務
 - 使用 [SortableJS](https://github.com/SortableJS/Sortable) 做出任務拖拉功能，並搭配演算法做出 To-do List 資料排序
 - 加入《薩爾達 — 荒野之息》經典音效，達成任務時給你滿滿的成就感！
-- [CodePen 連結](https://codepen.io/raychang2017/full/pXqRLo)（因安全疑慮，CodePen 無法使用 LocalStorage，包含 LocalStorage 的完整程式碼可參考 [GitHub 連結](https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/js/class.js)）
+- [CodePen 連結](https://codepen.io/raychang2017/full/pXqRLo)（因安全疑慮，CodePen 無法使用 LocalStorage，有 LocalStorage 的版本在[這裡](https://raychang2017.github.io/draggable-localStorage-todoList/)）
