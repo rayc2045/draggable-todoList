@@ -4,12 +4,17 @@ class TodoApp {
 	constructor() {
 		this.todolist = JSON.parse(localStorage.getItem('todolist')) || [];
 		this.accomplishSound = new Audio(
-			// 'http://noproblo.dayjo.org/ZeldaSounds/BOTW/BOTW_Fanfare_SmallItem.wav' // 使用 html 載入 audio 方式能在第一次播放無延遲，但播放中的其他操作無法播放音效
-			'../audio/BOTW_Fanfare_SmallItem.wav' // 使用 js 載入 audio 在第一次播放會有明顯延遲，但播放中的其他操作仍可繼續播放音效
-		);
-		this.deleteSound = new Audio('../audio/BotW_Interact_sound.mp3');
-		this.dragSound = new Audio('../audio/drag.mp3');
-		this.dropSound = new Audio('../audio/drop.mp3');
+			'https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/BOTW_Fanfare_SmallItem.wav?raw=true'
+		); // ../audio/BOTW_Fanfare_SmallItem.wav
+		this.deleteSound = new Audio(
+			'https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/BotW_Interact_sound.mp3?raw=true'
+		); // ../audio/BotW_Interact_sound.mp3
+		this.dragSound = new Audio(
+			'https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/drag.mp3?raw=true'
+		); // ../audio/drag.mp3
+		this.dropSound = new Audio(
+			'https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/drop.mp3?raw=true'
+		); // ../audio/drop.mp3
 		this.events();
 	}
 
