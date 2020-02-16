@@ -111,7 +111,7 @@ class TodoApp {
           <input type="checkbox"${this.todolist[i].completed ? ' checked' : ''}>
           <div class="check">✓</div>
           <div class="content">${this.todolist[i].task}</div>
-          <div class="delete">☓</div>
+          <div class="delete">✕</div>
         </div>`);
 		}
 	}
