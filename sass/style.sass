@@ -19,7 +19,7 @@ $black: #444
 
 @mixin flexLeft
   display: flex
-  justify-content: flex-start
+  justify-content: start
   align-items: center
 
 *, *:before, *:after
@@ -27,9 +27,8 @@ $black: #444
   letter-spacing: 0.5px
   cursor: default
   user-select: none
-  -moz-user-select: none
-  -webkit-user-select: none
-  -ms-user-select: none
+  outline: none // 預設邊
+  appearance: none // 預設外觀
 
 html, body
   margin: 0
@@ -69,7 +68,6 @@ body
     margin: 0
     +flexLeft
     color: $white
-    outline: none // 預設邊
     border-bottom: 1.5px solid transparent
     transition: 0.1s
   
@@ -95,16 +93,14 @@ body
 .handle
   margin-top: -3px
   margin-right: 8px
+  padding-top: 3px
+  padding-bottom: 3.4px
   font-size: 18px
   color: $darkgrey
   opacity: 0
   cursor: move
 
 input[type="checkbox"]
-  outline: none
-  appearance: none // 預設外觀
-  -moz-appearance: none
-  -webkit-appearance: none
   margin: 0
   border: 2px solid $darkgrey // 淡化勾選方塊顏色，讓視線更集中於任務
   +size(16px)
@@ -135,13 +131,10 @@ input[type="checkbox"]
   +flexLeft
   color: $black
   margin-left: 8px
-  width: 277px
   padding: 1.5px
+  +size(277px, 25px)
   font-size: 18px
-  outline: none // 預設邊
   border-bottom: solid 0.5px transparent
-  position: relative
-  top: 0.5px
   cursor: text
   transition: 0.1s
   &:focus
@@ -149,8 +142,9 @@ input[type="checkbox"]
   
 .delete
   margin-left: 8px
-  padding: 2px 6px // 增大面積更好按
-  font-size: 18px
+  padding: 4px 6px // 增大面積更好按
+  font-size: 15px
+  +flexCenter
   color: $darkgrey
   opacity: 0
   cursor: pointer
@@ -161,18 +155,17 @@ input[type="checkbox"]
   .add
     // display: inline-block
     font-size: 20px
-    margin-right: 4px
+    margin-right: 4.5px
     color: $darkgrey
     cursor: default
   input
     border: none
-    outline: none // 預設邊
     background-color: transparent
     color: $darkgrey
     border-bottom: solid 1px $lightgrey
     padding: 4px
     padding-left: 2px
-    width: 272px
+    width: 274px
     font-size: 17px
     cursor: text
     transition: 0.2s
@@ -182,9 +175,8 @@ input[type="checkbox"]
     color: #b5b5b5
 
 .dragging
-  height: 2em
-  line-height: 1.2em
-  width: 320px
+  +size(320px, 32px)
+  line-height: 18px
   margin: 0 auto
   margin-top: -3.3px
   margin-bottom: 6.8px
@@ -193,6 +185,7 @@ input[type="checkbox"]
   .handle, input[type="checkbox"], .check, .content
     opacity: 0
     color: transparent
+
 
 @media screen and (min-height: 615px) and (min-width: 410px)
   #todolist
