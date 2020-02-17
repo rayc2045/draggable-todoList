@@ -189,7 +189,7 @@ input[type="checkbox"]:checked ~ .content:focus {
   margin-left: 8px;
   padding: 1.5px;
   width: 277px;
-  height: 25px;
+  min-height: 25px;
   font-size: 18px;
   border-bottom: solid 0.5px transparent;
   cursor: text;
