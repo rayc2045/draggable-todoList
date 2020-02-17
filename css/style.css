@@ -126,10 +126,18 @@ body {
 }
 
 .handle {
-  margin-top: -3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-right: 8px;
-  padding-top: 3px;
-  padding-bottom: 3.4px;
+  padding-top: 2.2px;
+  padding-bottom: 4.8px;
   font-size: 18px;
   color: #808080;
   opacity: 0;
