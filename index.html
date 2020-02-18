@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Cache-control" content="public">
   <meta name="description" content="A lightweight but powerful to-do list which you might be interested.">
   <title>Draggable LocalStorage To-do List</title>
   <link rel="icon" href="https://avatars1.githubusercontent.com/u/39514595?s=460&v=4">
@@ -23,10 +24,10 @@
       <div class="wrapper">
         <div class="items" id="sortable"></div>
 
-        <div class="newItem">
-          <div class="add">＋</div>
-          <input type="text" placeholder="What needs to be done?" autofocus="true" required="true">
-        </div>
+        <label class="newItem">＋
+          <!-- <div class="add">＋</div> -->
+          <input placeholder="What needs to be done?" autofocus required>
+        </label>
       </div>
     </div>
 
