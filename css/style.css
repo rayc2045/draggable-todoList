@@ -228,7 +228,7 @@ input[type="checkbox"]:checked ~ .content:focus {
 }
 
 .newItem {
-  margin-left: 20px;
+  padding-left: 21px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -238,16 +238,12 @@ input[type="checkbox"]:checked ~ .content:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.newItem .add {
   font-size: 20px;
-  margin-right: 4.5px;
   color: #808080;
-  cursor: default;
 }
 
 .newItem input {
+  margin-left: 3px;
   border: none;
   background-color: transparent;
   color: #808080;
