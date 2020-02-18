@@ -194,13 +194,13 @@ class TodoApp {
 		});
 	}
 
-	jQueryUISortable() {
-		$('#todolist .items').sortable({
-			items: '.item',
-			cancel: '.content',
-			placeholder: 'dragging'
-		});
-	}
+	// jQueryUISortable() {
+	// 	$('#todolist .items').sortable({
+	// 		items: '.item',
+	// 		cancel: '.content',
+	// 		placeholder: 'dragging'
+	// 	});
+	// }
 
 	sortablejs() {
 		Sortable.create(sortable, {
