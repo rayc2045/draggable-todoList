@@ -54,9 +54,9 @@ body {
           transform: scale(0.8);
 }
 
-.title {
-  padding: 26px 24px;
+.titleBlock {
   margin: 0;
+  padding: 26px 24px;
   width: 340px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -71,7 +71,7 @@ body {
   border-bottom: 4px solid #444;
 }
 
-.title h1 {
+.titleBlock h1 {
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -185,6 +185,7 @@ input[type="checkbox"]:checked ~ .content:focus {
   width: 277px;
   min-height: 25px;
   font-size: 18px;
+  line-height: 1.45;
   border-bottom: solid 0.5px transparent;
   cursor: text;
   -webkit-transition: 0.1s;
