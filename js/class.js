@@ -131,6 +131,7 @@ class TodoApp {
 				self.todolist.push({ task: input, completed: false });
 				localStorage.setItem('todolist', JSON.stringify(self.todolist));
 				self.updateTasks();
+				self.adjustSpace();
 				$(this).val('');
 				self.dropSound.currentTime = 0;
 				self.dropSound.play();
@@ -189,6 +190,7 @@ class TodoApp {
 			item.remove();
 			if (!self.todolist.length) localStorage.removeItem('todolist'); // It's not same to clear()
 			self.updateTasks();
+			self.adjustSpace();
 			self.deleteSound.currentTime = 0;
 			self.deleteSound.play();
 		});
@@ -237,6 +239,12 @@ class TodoApp {
 				self.dropSound.play();
 			}
 		});
+	}
+
+	adjustSpace() {
+		$('.item').length > 12 ?
+			$('body').css('padding', '60px 0') :
+			$('body').css('padding', '0 0');
 	}
 }
 
