@@ -242,9 +242,30 @@ class TodoApp {
 	}
 
 	adjustSpace() {
-		$('.item').length > 12 ?
-			$('body').css('padding', '60px 0') :
-			$('body').css('padding', '0 0');
+		// 當可視畫面高 < 全文高
+		document.body.offsetHeight < document.body.scrollHeight ?
+		$('body').css('padding', '60px 0') :
+		$('body').css('padding', '0 0');
+		
+		// 取頁面高度 https://dotblogs.com.tw/aquarius6913/2011/01/03/20538
+		// console.log(`
+		// 網頁可見區域寬：${document.body.clientWidth}
+		// 網頁可見區域高：${document.body.clientHeight}
+		// 網頁可見區域寬：${document.body.offsetWidth} (包括邊線和捲軸的寬)
+		// 網頁可見區域高：${document.body.offsetHeight} (包括邊線的寬)
+		// 網頁正文全文寬：${document.body.scrollWidth}
+		// 網頁正文全文高：${document.body.scrollHeight}
+		// 網頁被卷去的高(ff)：${document.body.scrollTop}
+		// 網頁被卷去的高(ie)：${document.documentElement.scrollTop}
+		// 網頁被卷去的左：${document.body.scrollLeft}
+		// 網頁正文部分上：${window.screenTop}
+		// 網頁正文部分左：${window.screenLeft}
+		// 螢幕解析度的高：${window.screen.height}
+		// 螢幕解析度的寬：${window.screen.width}
+		// 螢幕可用工作區高度：${window.screen.availHeight}
+		// 螢幕可用工作區寬度：${window.screen.availWidth}
+		// 螢幕設置為 ${window.screen.colorDepth} 位色彩
+		// 螢幕設置為 ${window.screen.deviceXDPI} 像素/英寸`);
 	}
 }
 
