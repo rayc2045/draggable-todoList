@@ -3,6 +3,7 @@
 class TodoApp {
 	constructor() {
 		this.todolist = JSON.parse(localStorage.getItem('todolist')) || [];
+		this.lockNumber = 10;
 		this.accomplishSound = new Audio(
 			'https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/BOTW_Fanfare_SmallItem.wav?raw=true'
 		); // ../audio/BOTW_Fanfare_SmallItem.wav
@@ -114,12 +115,20 @@ class TodoApp {
           <div class="delete">✕</div>
         </div>`);
 		}
+
+		this.changePlaceholder(this.lockNumber);
 	}
 
 	addTask() {
 		const self = this;
 
 		$('.newItem input').keydown(function(e) {
+			// Lock to-do list
+			if ($('.item').length > (self.lockNumber - 1)) {
+				e.preventDefault();
+				return;
+			}
+
 			if (e.which === 13) {
 				// input, select, textarea 用 val；其他使用 text()
 				// val() 會抓取內容，如果輸入值到括號中會變為輸出
@@ -131,7 +140,6 @@ class TodoApp {
 				self.todolist.push({ task: input, completed: false });
 				localStorage.setItem('todolist', JSON.stringify(self.todolist));
 				self.updateTasks();
-				self.adjustSpace();
 				$(this).val('');
 				self.dropSound.currentTime = 0;
 				self.dropSound.play();
@@ -190,10 +198,17 @@ class TodoApp {
 			item.remove();
 			if (!self.todolist.length) localStorage.removeItem('todolist'); // It's not same to clear()
 			self.updateTasks();
-			self.adjustSpace();
 			self.deleteSound.currentTime = 0;
 			self.deleteSound.play();
 		});
+	}
+
+	changePlaceholder(lockNum) {
+		if ($('.item').length > (lockNum - 1)) {
+			$('.newItem input').attr('placeholder', 'Try to make tasks less than 10.')
+		} else {
+			$('.newItem input').attr('placeholder', 'What needs to be done?');
+		}
 	}
 
 	// jQueryUISortable() {
@@ -241,32 +256,38 @@ class TodoApp {
 		});
 	}
 
-	adjustSpace() {
-		// 當可視畫面高 < 全文高
-		document.body.offsetHeight < document.body.scrollHeight ?
-		$('body').css('padding', '60px 0') :
-		$('body').css('padding', '0 0');
+	// adjustSpace() {
+	// 	// 當可視畫面高 < 全文高
+	// 	if (document.body.offsetHeight < document.body.scrollHeight) {
+	// 		$('body').css({
+	// 			'padding': '60px, 0'
+	// 		});
+	// 		// Scroll to (x, y)
+	// 		// $('body').scrollTo(0, $('$todolist').scrollHeight);
+	// 	} else {
+	// 		$('body').css('padding', '0');
+	// 	}
 		
-		// 取頁面高度 https://dotblogs.com.tw/aquarius6913/2011/01/03/20538
-		// console.log(`
-		// 網頁可見區域寬：${document.body.clientWidth}
-		// 網頁可見區域高：${document.body.clientHeight}
-		// 網頁可見區域寬：${document.body.offsetWidth} (包括邊線和捲軸的寬)
-		// 網頁可見區域高：${document.body.offsetHeight} (包括邊線的寬)
-		// 網頁正文全文寬：${document.body.scrollWidth}
-		// 網頁正文全文高：${document.body.scrollHeight}
-		// 網頁被卷去的高(ff)：${document.body.scrollTop}
-		// 網頁被卷去的高(ie)：${document.documentElement.scrollTop}
-		// 網頁被卷去的左：${document.body.scrollLeft}
-		// 網頁正文部分上：${window.screenTop}
-		// 網頁正文部分左：${window.screenLeft}
-		// 螢幕解析度的高：${window.screen.height}
-		// 螢幕解析度的寬：${window.screen.width}
-		// 螢幕可用工作區高度：${window.screen.availHeight}
-		// 螢幕可用工作區寬度：${window.screen.availWidth}
-		// 螢幕設置為 ${window.screen.colorDepth} 位色彩
-		// 螢幕設置為 ${window.screen.deviceXDPI} 像素/英寸`);
-	}
+	// 	// 取頁面高度 https://dotblogs.com.tw/aquarius6913/2011/01/03/20538
+	// 	// console.log(`
+	// 	// 網頁可見區域寬：${document.body.clientWidth}
+	// 	// 網頁可見區域高：${document.body.clientHeight}
+	// 	// 網頁可見區域寬：${document.body.offsetWidth} (包括邊線和捲軸的寬)
+	// 	// 網頁可見區域高：${document.body.offsetHeight} (包括邊線的寬)
+	// 	// 網頁正文全文寬：${document.body.scrollWidth}
+	// 	// 網頁正文全文高：${document.body.scrollHeight}
+	// 	// 網頁被卷去的高(ff)：${document.body.scrollTop}
+	// 	// 網頁被卷去的高(ie)：${document.documentElement.scrollTop}
+	// 	// 網頁被卷去的左：${document.body.scrollLeft}
+	// 	// 網頁正文部分上：${window.screenTop}
+	// 	// 網頁正文部分左：${window.screenLeft}
+	// 	// 螢幕解析度的高：${window.screen.height}
+	// 	// 螢幕解析度的寬：${window.screen.width}
+	// 	// 螢幕可用工作區高度：${window.screen.availHeight}
+	// 	// 螢幕可用工作區寬度：${window.screen.availWidth}
+	// 	// 螢幕設置為 ${window.screen.colorDepth} 位色彩
+	// 	// 螢幕設置為 ${window.screen.deviceXDPI} 像素/英寸`);
+	// }
 }
 
 let todoApp = new TodoApp();
