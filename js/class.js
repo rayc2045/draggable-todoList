@@ -124,16 +124,13 @@ class TodoApp {
 
 		$('.newItem input').keydown(function(e) {
 			// Lock to-do list
-			if ($('.item').length > (self.lockNumber - 1)) {
-				e.preventDefault();
-				return;
-			}
+			if ($('.item').length > (self.lockNumber - 1)) return e.preventDefault();
 
 			if (e.which === 13) {
-				// input, select, textarea 用 val；其他使用 text()
-				// val() 會抓取內容，如果輸入值到括號中會變為輸出
-				// trim() 刪除首尾空格
 				const input = $(this).val().trim();
+				// input, select, textarea 用 val；其他使用 text()
+				// val() 取值，如果在括號中輸入值會變為輸出
+				// trim() 刪除首尾空格
 
 				if (!input) return;
 
@@ -141,8 +138,7 @@ class TodoApp {
 				localStorage.setItem('todolist', JSON.stringify(self.todolist));
 				self.updateTasks();
 				$(this).val('');
-				self.dropSound.currentTime = 0;
-				self.dropSound.play();
+				self.soundPlay(self.dropSound);
 			}
 		});
 	}
@@ -159,8 +155,7 @@ class TodoApp {
 
 			if ($(this).is(':checked')) {
 				// $('.accomplishSound')[0].play();
-				self.accomplishSound.currentTime = 0;
-				self.accomplishSound.play();
+				self.soundPlay(self.accomplishSound);
 			}
 		});
 	}
@@ -198,9 +193,13 @@ class TodoApp {
 			item.remove();
 			if (!self.todolist.length) localStorage.removeItem('todolist'); // It's not same to clear()
 			self.updateTasks();
-			self.deleteSound.currentTime = 0;
-			self.deleteSound.play();
+			self.soundPlay(self.deleteSound);
 		});
+	}
+
+	soundPlay(audio) {
+		audio.currentTime = 0;
+		audio.play();
 	}
 
 	changePlaceholder(lockNum) {
@@ -232,8 +231,7 @@ class TodoApp {
 		});
 
 		$('.items').on('mousedown', '.handle', () => {
-			this.dragSound.currentTime = 0;
-			this.dragSound.play();
+			this.soundPlay(this.dragSound);
 		});
 	}
 
@@ -250,8 +248,7 @@ class TodoApp {
 
 				// 重置 html 中項目的 id 值
 				$('.item').eq(i).attr('id', `item_${i}`);
-				self.dropSound.currentTime = 0;
-				self.dropSound.play();
+				self.soundPlay(self.dropSound);
 			}
 		});
 	}
