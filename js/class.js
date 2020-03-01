@@ -204,7 +204,7 @@ class TodoApp {
 
 	changePlaceholder(lockNum) {
 		if ($('.item').length > (lockNum - 1)) {
-			$('.newItem input').attr('placeholder', 'Try to make tasks less than 10.')
+			$('.newItem input').attr('placeholder', 'Try to make tasks less...')
 		} else {
 			$('.newItem input').attr('placeholder', 'What needs to be done?');
 		}
