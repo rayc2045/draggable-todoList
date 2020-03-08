@@ -14,4 +14,4 @@
 - 使用 [SortableJS](https://github.com/SortableJS/Sortable) 做出任務拖拉功能，並搭配演算法做出 To-do List 資料排序
 - 加入新增、拖移、刪除任務，甚至達成任務時出現的《薩爾達 — 荒野之息》經典音效，讓操作體驗更有感！
 - 使用 Cache 對資源進行緩存，音效播放不延遲！
-- [CodePen 連結](https://codepen.io/raychang2017/full/pXqRLo)（因安全疑慮，CodePen 無法使用 LocalStorage，有 LocalStorage 的版本在[這裡](https://raychang2017.github.io/draggable-localStorage-todoList/)）
+- [線上版](https://raychang2017.github.io/draggable-localStorage-todoList/) / [CodePen 連結](https://codepen.io/raychang2017/full/pXqRLo)（因安全疑慮，CodePen 無法使用 LocalStorage）
