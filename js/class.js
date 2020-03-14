@@ -3,7 +3,7 @@
 class TodoApp {
 	constructor() {
 		this.todolist = JSON.parse(localStorage.getItem('todolist')) || [];
-		this.lockNumber = 10;
+		this.maxTaskNumber = 10;
 		this.accomplishSound = new Audio(
 			'https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/BOTW_Fanfare_SmallItem.wav?raw=true'
 		); // ../audio/BOTW_Fanfare_SmallItem.wav
@@ -116,7 +116,7 @@ class TodoApp {
         </div>`);
 		}
 
-		this.changePlaceholder(this.lockNumber);
+		this.changePlaceholder(this.maxTaskNumber);
 	}
 
 	addTask() {
@@ -124,7 +124,7 @@ class TodoApp {
 
 		$('.newItem input').keydown(function(e) {
 			// Lock to-do list
-			if ($('.item').length > (self.lockNumber - 1)) return e.preventDefault();
+			if ($('.item').length > (self.maxTaskNumber - 1)) return e.preventDefault();
 
 			if (e.which === 13) {
 				const input = $(this).val().trim();
@@ -202,8 +202,8 @@ class TodoApp {
 		audio.play();
 	}
 
-	changePlaceholder(lockNum) {
-		if ($('.item').length > (lockNum - 1)) {
+	changePlaceholder(maxTaskNumber) {
+		if ($('.item').length > (maxTaskNumber - 1)) {
 			$('.newItem input').attr('placeholder', 'Try to make tasks less...')
 		} else {
 			$('.newItem input').attr('placeholder', 'What needs to be done?');
