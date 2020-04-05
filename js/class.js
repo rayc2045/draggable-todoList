@@ -4,6 +4,7 @@ class TodoApp {
 	constructor() {
 		this.todolist = JSON.parse(localStorage.getItem('todolist')) || [];
 		this.maxTaskNumber = 10;
+		// this.nightMode = false;
 		this.accomplishSound = new Audio(
 			'https://github.com/raychang2017/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/BOTW_Fanfare_SmallItem.wav?raw=true'
 		); // ../audio/BOTW_Fanfare_SmallItem.wav
@@ -30,6 +31,7 @@ class TodoApp {
 		// jQueryUISortable();
 		this.sortablejs();
 		this.rearrangeTodolist();
+		// setInterval(this.toggleNightMode(), 60000);
 	}
 
 	debug() {
@@ -39,7 +41,7 @@ class TodoApp {
 			console.log(self.todolist);
 		});
 
-		$('.newItem input').keydown(function(e) {
+		$('.new-item input').keydown(function(e) {
 			if (e.which === 13) {
 				console.log('"' + $(this).val() + '" is added.');
 			}
@@ -122,7 +124,7 @@ class TodoApp {
 	addTask() {
 		const self = this;
 
-		$('.newItem input').keydown(function(e) {
+		$('.new-item input').keydown(function(e) {
 			// Lock to-do list
 			if ($('.item').length > (self.maxTaskNumber - 1)) return e.preventDefault();
 
@@ -204,9 +206,9 @@ class TodoApp {
 
 	changePlaceholder(maxTaskNumber) {
 		if ($('.item').length > (maxTaskNumber - 1)) {
-			$('.newItem input').attr('placeholder', 'Try to make tasks less...')
+			$('.new-item input').attr('placeholder', 'Try to make tasks less...')
 		} else {
-			$('.newItem input').attr('placeholder', 'What needs to be done?');
+			$('.new-item input').attr('placeholder', 'What needs to be done?');
 		}
 	}
 
@@ -224,7 +226,7 @@ class TodoApp {
 			animation: 100, // 物件移動時間(單位:毫秒)
 			handle: '.handle', // 可拖曳的區域
 			draggable: '.item', // 可拖曳的物件
-			// filter: ".newItem",  // 過濾器，不能拖曳的物件
+			// filter: ".new-item",  // 過濾器，不能拖曳的物件
 			// preventOnFilter: true, // 當過濾器啟動的時候，觸發 event.preventDefault()
 			ghostClass: 'dragging' // 拖曳時，給予物件的類別
 			// chosenClass: "dragging",  // 選定時，給予物件的類別
@@ -252,6 +254,30 @@ class TodoApp {
 			}
 		});
 	}
+
+	// checkNight() {
+	// 	const hour = new Date().getHours();
+
+	// 	// 6:00 - 17:59 視為日，其他為夜
+	// 	hour > 6 && hour < 18 ? (this.nightMode = false) : (this.nightMode = true);
+	// 	// console.log(this.nightMode);
+	// }
+
+	// toggleNightMode() {
+	// 	this.checkNight();
+
+	// 	if (this.nightMode) {
+	// 		$('body').css({
+	// 			backgroundColor: '#273238'
+	// 		});
+	// 		$('#todolist').addClass('night-mode');
+	// 	} else {
+	// 		$('body').css({
+	// 			backgroundColor: '#ffc945'
+	// 		});
+	// 		$('#todolist').removeClass('night-mode');
+	// 	}
+	// }
 
 	// adjustSpace() {
 	// 	// 當可視畫面高 < 全文高
