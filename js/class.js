@@ -153,6 +153,7 @@ class TodoApp {
 
 			self.todolist[index].completed = !self.todolist[index].completed;
 			localStorage.setItem('todolist', JSON.stringify(self.todolist));
+			self.updateTasks();
 			$('.content').blur();
 
 			if ($(this).is(':checked')) {
