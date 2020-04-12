@@ -153,7 +153,6 @@ class TodoApp {
 
 			self.todolist[index].completed = !self.todolist[index].completed;
 			localStorage.setItem('todolist', JSON.stringify(self.todolist));
-			self.updateTasks();
 			$('.content').blur();
 
 			if ($(this).is(':checked')) {
@@ -243,13 +242,13 @@ class TodoApp {
 
 		$('.items').change(function() {
 			for (let i = 0; i < self.todolist.length; i++) {
-				// 將 TodoApp.todolist 中的資料，複寫為 html 中順序對應的項目值
+				// Overwrite data
 				self.todolist[i].task = $('.item').eq(i).find('.content').text();
 				self.todolist[i].completed = $('.item').eq(i).find('input').prop('checked');
 
 				localStorage.setItem('todolist', JSON.stringify(self.todolist));
 
-				// 重置 html 中項目的 id 值
+				// Update el id number
 				$('.item').eq(i).attr('id', `item_${i}`);
 				self.soundPlay(self.dropSound);
 			}
