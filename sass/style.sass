@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700")
+
+$white: #f3f3f3
+$yellow: #ffc945
+$red: #f34653
+$lightGrey: rgba(black, 0.1)
+$grey: #b5b5b5
+$mediumGrey: #808080
+$darkGrey: #636161
+$black: #444
+
+@mixin size($width,$height:$width)
+  width: $width
+  height: $height
+
+@mixin flexCenter
+  display: flex // 強制放在同一行
+  justify-content: center // 主軸置中
+  align-items: center // 附軸置中
+
+@mixin flexLeft
+  display: flex
+  justify-content: start
+  align-items: center
+
+*, *:before, *:after
+  font-family: 'Roboto Condensed','微軟正黑體', sans-serif
+  letter-spacing: 0.5px
+  cursor: default
+  user-select: none
+  outline: none // 預設邊
+  appearance: none // 預設外觀
+
+html, body
+  margin: 0
+  +size(100%)
+  
+body
+  +flexCenter
+  background-color: $yellow
+  
+// 視窗捲軸(滾動條)
+::-webkit-scrollbar
+  width: 0
+// ::-webkit-scrollbar
+//   width: 6px
+// ::-webkit-scrollbar-track
+//   background-color: $yellow
+// ::-webkit-scrollbar-thumb
+//   background-color: $black
+
+::selection
+  background-color: $lightGrey
+
+#todolist
+  border: 4px solid $black
+  background-color: $white // 在此設定紅色，初次載入視窗時縮放較不明顯
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.3) // X, Y, spread, spread-radius, color
+  transform: scale(0.8)
+  // &.night-mode
+  
+.title-block
+  margin: 0
+  padding: 26px 24px
+  width: 340px
+  +flexCenter
+  background-color: $red
+  border-bottom: 4px solid $black
+  h1
+    margin: 0
+    +flexLeft
+    color: $white
+    border-bottom: 1.5px solid transparent
+    transition: 0.1s
+  
+.wrapper
+  padding: 30px 14px
+
+.item
+  display: flex
+  margin-bottom: 11px
+  &:hover
+    .handle
+      opacity: 1
+    .delete
+      opacity: 1
+  &:active
+    .handle
+      opacity: 0
+    .content
+      border-color: transparent
+    .delete
+      opacity: 0
+
+.handle
+  margin-right: 8px
+  padding-top: 2.2px
+  padding-bottom: 4.8px
+  font-size: 18px
+  color: $mediumGrey
+  opacity: 0
+  cursor: move
+
+input[type="checkbox"]
+  margin: 0
+  margin-top: 6px
+  border: 2px solid $mediumGrey // 淡化勾選方塊顏色，讓視線更集中於任務
+  +size(16px)
+  border-radius: 2px
+  cursor: pointer
+  &:checked
+    border-color: $grey
+    ~ .check
+      opacity: 1
+    ~ .content
+      color: $grey
+      text-decoration: line-through
+      transition: 0
+      &:focus
+        border-color: $grey
+
+.check
+  font-size: 22px
+  margin-right: -18px
+  position: relative
+  top: -1px
+  left: -15px
+  color: $grey
+  opacity: 0
+  pointer-events: none
+  
+.content
+  +flexLeft
+  color: $black
+  margin-left: 8px
+  padding: 1.5px
+  width: 277px
+  min-height: 25px
+  font-size: 18px
+  line-height: 1.45
+  border-bottom: solid 0.5px transparent
+  cursor: text
+  transition: 0.1s
+  &:focus
+    border-color: $mediumGrey
+  
+.delete
+  margin-left: 8px
+  padding: 0 7.4px // 增大面積更好按
+  padding-top: 5.8px
+  font-size: 15px
+  color: $mediumGrey
+  opacity: 0
+  cursor: pointer
+
+.new-item
+  padding-left: 20.5px
+  +flexLeft
+  font-size: 20px
+  color: $mediumGrey
+  input
+    margin-left: 4px
+    border: none
+    background-color: transparent
+    color: $mediumGrey
+    border-bottom: solid 1px $lightGrey
+    padding: 4px
+    padding-left: 2px
+    width: 274px
+    font-size: 17px
+    cursor: text
+    transition: 0.2s
+    &:focus
+      border-color: $grey
+  ::-webkit-input-placeholder
+    color: #b5b5b5
+
+.dragging
+  +size(320px, 32px)
+  line-height: 18px
+  margin: 0 auto
+  margin-top: -3.3px
+  margin-bottom: 6.8px
+  border: 2px dashed grey
+  border-radius: 5px
+  .handle, input[type="checkbox"], .check, .content
+    opacity: 0
+    color: transparent
+
+// Size > Specified Conditions
+@media screen and (min-width: 410px) and (min-height: 615px)
+  #todolist
+    transform: scale(1)
+
+@media screen and (min-width: 768px)
+  #todolist
+    transform: scale(1.1)
