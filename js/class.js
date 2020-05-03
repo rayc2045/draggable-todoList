@@ -2,7 +2,28 @@
 
 class TodoApp {
 	constructor() {
-		this.todolist = JSON.parse(localStorage.getItem('todolist')) || [];
+		this.todolist = JSON.parse(localStorage.getItem('todolist')) || [
+			{
+				task: '可使用任務左側 ": :" 符號拖曳項目',
+				completed: false
+			},
+			{
+				task: '可使用任務右側 "✕" 符號刪除項目',
+				completed: false
+			},
+			{
+				task: '點擊任務後可自由進行編輯',
+				completed: false
+			},
+			{
+				task: '自動儲存機制將保留任何更動',
+				completed: false
+			},
+			{
+				task: '開始嘗試新增您的第一項任務！',
+				completed: false
+			},
+		];
 		this.maxTaskNumber = 10;
 		// this.nightMode = false;
 		this.accomplishSound = new Audio(
