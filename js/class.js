@@ -147,7 +147,11 @@ class TodoApp {
 
 		$('.new-item input').keydown(function(e) {
 			// Lock to-do list
-			if ($('.item').length > (self.maxTaskNumber - 1)) return e.preventDefault();
+			if ($('.item').length > (self.maxTaskNumber - 1)) {
+				e.preventDefault();
+				$(this).val('');
+				return;
+			}
 
 			if (e.which === 13) {
 				const input = $(this).val().trim();
