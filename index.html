@@ -6,38 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Cache-control" content="max-age=28800"> <!-- 8hr Cache-->
   <title>Draggable LocalStorage To-do List</title>
-  <meta name="description" content="A lightweight but powerful to-do list which you must be interested.">
+  <meta name="description" content="A draggable To-do List with LocalStorage saving.">
   <meta name="keywords" content="todo,list,代辦事項,代辦清單,代辦事項清單,javascript,js">
-  <meta name="author" content="Ray Chang">
+  <meta name="author" content="Ray C">
   <link rel="icon" href="https://avatars1.githubusercontent.com/u/39514595?s=460&v=4">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700">
   <link rel="stylesheet" href="./css/style.min.css">
 </head>
-
 <body>
-    <div id="todolist">
-      <!-- 變為可視：audio(src="" controls) -->
-      <!-- 使用 html 載入 audio 方式能在第一次播放無延遲，但播放中的其他操作無法播放音效；使用 js 載入 audio 在第一次播放會有明顯延遲，但播放中的其他操作仍可繼續播放音效 -->
-      <!-- <audio class="accomplishSound" src="http://noproblo.dayjo.org/ZeldaSounds/BOTW/BOTW_Fanfare_SmallItem.wav"></audio> -->
-      
-      <div class="title-block">
-        <h1>To-Do List 待辦事項清單</h1>
-      </div>
-
-      <div class="wrapper">
-        <div class="items" id="sortable"></div>
-
-        <label class="new-item">＋
-          <!-- <div class="add">＋</div> -->
-          <input type="text" placeholder="What needs to be done?" autofocus required>
-        </label>
-      </div>
+  <div class="todo-list">
+    <div class="title-block">
+      <h1>To-Do List 待辦事項清單</h1>
     </div>
-
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+    <div class="wrapper">
+      <ul id="sortable" class="items">
+        <!-- <li id="item_0" class="item">...</li> -->
+      </ul>
+      <label class="new-item">
+        ＋<input class="new-item-input" type="text" placeholder="What needs to be done?" autofocus required>
+      </label>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/Sortable.min.js"></script>
-  <!-- <script src="./js/sortable.min.js"></script> -->
-  <script src="./js/class.min.js"></script>
+  <script src="./js/script.min.js"></script>
 </body>
-
 </html>

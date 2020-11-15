@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700")
+// @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700")
 
 $white: #f3f3f3
 $yellow: #ffc945
@@ -9,14 +9,14 @@ $mediumGrey: #808080
 $darkGrey: #636161
 $black: #444
 
-@mixin size($width,$height:$width)
+@mixin size($width, $height:$width)
   width: $width
   height: $height
 
 @mixin flexCenter
-  display: flex // 強制放在同一行
-  justify-content: center // 主軸置中
-  align-items: center // 附軸置中
+  display: flex
+  justify-content: center
+  align-items: center
 
 @mixin flexLeft
   display: flex
@@ -24,22 +24,22 @@ $black: #444
   align-items: center
 
 *, *:before, *:after
+  margin: 0
+  padding: 0
   font-family: 'Roboto Condensed','微軟正黑體', sans-serif
   letter-spacing: 0.5px
   cursor: default
   user-select: none
-  outline: none // 預設邊
-  appearance: none // 預設外觀
+  outline: none
+  appearance: none
 
 html, body
   margin: 0
   +size(100%)
-  
 body
   +flexCenter
   background-color: $yellow
-  
-// 視窗捲軸(滾動條)
+
 ::-webkit-scrollbar
   width: 0
 // ::-webkit-scrollbar
@@ -52,12 +52,10 @@ body
 ::selection
   background-color: $lightGrey
 
-#todolist
+.todo-list
   border: 4px solid $black
   background-color: $white // 在此設定紅色，初次載入視窗時縮放較不明顯
   box-shadow: 0px 0px 20px rgba(0,0,0,0.3) // X, Y, spread, spread-radius, color
-  transform: scale(0.8)
-  // &.night-mode
   
 .title-block
   margin: 0
@@ -187,11 +185,6 @@ input[type="checkbox"]
     opacity: 0
     color: transparent
 
-// Size > Specified Conditions
-@media screen and (min-width: 410px) and (min-height: 615px)
-  #todolist
-    transform: scale(1)
-
-@media screen and (min-width: 768px)
-  #todolist
-    transform: scale(1.1)
+@media screen and (min-width: 1281px)
+  .todo-list
+    transform: scale(1.25)
