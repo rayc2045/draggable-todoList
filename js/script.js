@@ -44,8 +44,8 @@ class TodoApp {
 	}
 
 	events() {
-    this.updateTasks();
-    
+		this.updateTasks();
+
 		// Drag and rearrange
 		this.sortableJS();
 		this.itemsParentEl.onchange = () => this.rearrangeTodoList();
@@ -53,19 +53,26 @@ class TodoApp {
 		// Handle sound and content edit
 		this.itemsParentEl.onmousedown = (e) => {
 			if (e.target.classList.contains('handle')) return this.playSound(this.dragSound);
-			if (e.target.classList.contains('content')) this.editEnable(e);
+			if (e.target.classList.contains('content')) {
+				this.editEnable(e);
+				e.target.onblur = (e) => this.saveContent(e);
+			}
 		};
 
-		// Enter => blur => save content
+		// Enter/blur => content save
 		this.itemsParentEl.onkeydown = (e) => {
 			if (e.target.classList.contains('content')) {
 				if (e.which === 13) return e.target.blur();
 				if (e.which === 8 && !e.target.textContent) this.deleteTask(e);
 			}
-    };
-		this.itemEls.forEach((el) => {
-			el.childNodes[7].onblur = (e) => this.saveContent(e);
-		});
+		};
+		// Only fire once, resolution: line 58
+		// this.itemEls.forEach((el) => {
+		// 	el.childNodes[7].onblur = (e) => {
+		// 		this.saveContent(e);
+		// 		console.log('blur')
+		// 	}
+		// });
 
 		// Complete and delete task
 		this.itemsParentEl.onclick = (e) => {
@@ -75,7 +82,7 @@ class TodoApp {
 
 		// Add task
 		this.newItemInputEl.onkeydown = (e) => {
-			if (this.itemEls.length > this.maxTaskNumber - 1) return this.inputDisable(e);
+			if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
 			if (e.which === 13) this.addTask();
 		};
 	}
@@ -185,8 +192,8 @@ class TodoApp {
 	}
 
 	playSound(audio, volume = 1) {
-    audio.currentTime = 0;
-    audio.volume = volume;
+		audio.currentTime = 0;
+		audio.volume = volume;
 		audio.play();
 	}
 }
