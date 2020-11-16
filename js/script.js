@@ -124,7 +124,7 @@ class TodoApp {
 
 	inputDisable(e) {
 		e.preventDefault();
-		this.newItemInputEl.value = '';
+		e.target.value = '';
 	}
 
 	deleteTask(e) {
