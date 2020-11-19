@@ -146,7 +146,8 @@ class TodoApp {
 		this.todoList[index].completed = !this.todoList[index].completed;
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
-		if (e.target.checked) this.playSound(this.accomplishSound, 0.35);
+		if (!e.target.checked) return this.turnDownGradually(this.accomplishSound);
+		this.playSound(this.accomplishSound, 0.35);
 	}
 
 	editEnable(e) {
@@ -195,6 +196,14 @@ class TodoApp {
 		audio.currentTime = 0;
 		audio.volume = volume;
 		audio.play();
+	}
+
+	turnDownGradually(audio) {
+		for (let i = 1; i <= 5; i ++) {
+			let delay = 0;
+			setTimeout(() => audio.volume /= 1.45, delay * i);
+			delay = 0.2;
+		}
 	}
 }
 
