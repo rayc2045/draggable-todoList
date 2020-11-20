@@ -51,37 +51,33 @@ class TodoApp {
 		this.itemsParentEl.onchange = () => this.rearrangeTodoList();
 
 		// Handle sound and content edit
-		this.itemsParentEl.onmousedown = (e) => {
+		this.itemsParentEl.onmousedown = e => {
 			if (e.target.classList.contains('handle')) return this.playSound(this.dragSound);
 			if (e.target.classList.contains('content')) {
 				this.editEnable(e);
-				e.target.onblur = (e) => this.saveContent(e);
+				e.target.onblur = e => {
+					if (!e.target.textContent.trim()) return this.deleteTask(e);
+					this.saveContent(e);
+				};
 			}
 		};
 
-		// Enter/blur => content save
-		this.itemsParentEl.onkeydown = (e) => {
-			if (e.which === 13 && e.target.classList.contains('content')) {
+		// Enter => blur (line 58) => content save
+		this.itemsParentEl.onkeydown = e => {
+			if (e.target.classList.contains('content') && e.which === 13) {
 				// e.target.blur();
 				this.newItemInputEl.focus();
-			};
+			}
 		};
-		// Only fire once, resolution: line 58
-		// this.itemEls.forEach((el) => {
-		// 	el.childNodes[7].onblur = (e) => {
-		// 		this.saveContent(e);
-		// 		console.log('blur')
-		// 	}
-		// });
 
 		// Complete and delete task
-		this.itemsParentEl.onclick = (e) => {
+		this.itemsParentEl.onclick = e => {
 			if (e.target.type === 'checkbox') return this.toggleComplete(e);
 			if (e.target.classList.contains('delete')) this.deleteTask(e);
 		};
 
 		// Add task
-		this.newItemInputEl.onkeydown = (e) => {
+		this.newItemInputEl.onkeydown = e => {
 			if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
 			if (e.which === 13) this.addTask();
 		};
