@@ -61,10 +61,10 @@ class TodoApp {
 
 		// Enter/blur => content save
 		this.itemsParentEl.onkeydown = (e) => {
-			if (e.target.classList.contains('content')) {
-				if (e.which === 13) return e.target.blur();
-				if (e.which === 8 && !e.target.textContent) this.deleteTask(e);
-			}
+			if (e.which === 13 && e.target.classList.contains('content')) {
+				// e.target.blur();
+				this.newItemInputEl.focus();
+			};
 		};
 		// Only fire once, resolution: line 58
 		// this.itemEls.forEach((el) => {
