@@ -46,15 +46,23 @@ class TodoApp {
 	events() {
 		this.updateTasks();
 
-		// Drag and rearrange
+		// Drag , drop and rearrange
 		this.sortableJS();
 		this.itemsParentEl.onchange = () => this.rearrangeTodoList();
+		this.itemsParentEl.ondragstart = e => e.target.style.height = `${e.target.scrollHeight}px`;
+		this.itemsParentEl.ondragend = e => {
+			e.target.removeAttribute('draggable');
+			this.itemEls.forEach(el => el.removeAttribute('style')); // Already set .item {height: auto} in CSS, so directly remove the changes after dragging
+		}
 
 		// Handle sound and content edit
 		this.itemsParentEl.onmousedown = e => {
 			if (e.target.classList.contains('handle')) return this.playSound(this.dragSound);
 			if (e.target.classList.contains('content')) {
 				this.editEnable(e);
+				// When mousedown on the handle, but not drag the item(or drag it outside the to-do list), the codes start from line 53 may not active
+				e.target.closest('.item').removeAttribute('draggable');
+				e.target.closest('.item').removeAttribute('style');
 				e.target.onblur = e => {
 					if (!e.target.textContent.trim()) return this.deleteTask(e);
 					this.saveContent(e);
