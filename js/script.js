@@ -50,10 +50,7 @@ class TodoApp {
 		this.sortableJS();
 		this.itemsParentEl.onchange = () => this.rearrangeTodoList();
 		this.itemsParentEl.ondragstart = e => e.target.style.height = `${e.target.scrollHeight}px`;
-		this.itemsParentEl.ondragend = e => {
-			e.target.removeAttribute('draggable');
-			this.itemEls.forEach(el => el.removeAttribute('style')); // Already set .item {height: auto} in CSS, so directly remove the changes after dragging
-		}
+		this.itemsParentEl.ondragend = () => this.updateTasks(); // Already set .item {height: auto} in CSS, so directly update tasks after dragging
 
 		// Handle sound and content edit
 		this.itemsParentEl.onmousedown = e => {
