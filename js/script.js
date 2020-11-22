@@ -48,12 +48,12 @@ class TodoApp {
 
 		// Drag , drop and rearrange
 		this.sortableJS();
-		this.itemsParentEl.onchange = () => this.rearrangeTodoList();
+		this.itemsParentEl.onchange = () => this.rearrangeTodoList(); // Using change event instead of dragend event makes tasks arrange when any task being dragged outside the parent element
 		this.itemsParentEl.ondragstart = e => e.target.style.height = `${e.target.scrollHeight}px`;
 		this.itemsParentEl.ondragend = () => {
 			this.itemEls.forEach(el => {
 				el.removeAttribute('draggable');
-				el.removeAttribute('style'); // .item's default height is auto in CSS, so directly remove inline-css attributes
+				el.removeAttribute('style'); // .item's default height is auto, so directly remove inline-css attributes
 			});
 		};
 
@@ -73,7 +73,7 @@ class TodoApp {
 			}
 		};
 
-		// Enter => blur (line 58) => content save
+		// Enter => blur => content save (line 68)
 		this.itemsParentEl.onkeydown = e => {
 			if (e.target.classList.contains('content') && e.which === 13) {
 				// e.target.blur();
@@ -148,7 +148,7 @@ class TodoApp {
 	}
 
 	toggleComplete(e) {
-		e.preventDefault(); // Prevent trigging itemsParentEl onchange event
+		e.preventDefault(); // Prevent trigging itemsParentEl onchange event sound
 		const index = e.target.closest('.item').id.replace(/item_/g, '');
 		this.todoList[index].completed = !this.todoList[index].completed;
 		this.setLocalStorage('todoList', this.todoList);
