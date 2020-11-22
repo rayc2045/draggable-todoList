@@ -67,8 +67,8 @@ class TodoApp {
 				e.target.closest('.item').removeAttribute('style');
 				e.target.onblur = e => {
 					if (!e.target.textContent.trim()) return this.deleteTask(e);
-					e.target.removeAttribute('contenteditable');
 					this.saveContent(e);
+					this.editDisable(e);
 				};
 			}
 		};
@@ -159,6 +159,10 @@ class TodoApp {
 
 	editEnable(e) {
 		e.target.contentEditable = 'true';
+	}
+
+	editDisable(e) {
+		e.target.removeAttribute('contenteditable');
 	}
 
 	saveContent(e) {
