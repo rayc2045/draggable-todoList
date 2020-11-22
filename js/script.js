@@ -153,7 +153,7 @@ class TodoApp {
 		this.todoList[index].completed = !this.todoList[index].completed;
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
-		if (!e.target.checked) return this.turnDownGradually(this.accomplishSound);
+		if (!e.target.checked) return this.muteGradually(this.accomplishSound);
 		this.playSound(this.accomplishSound, 0.35);
 	}
 
@@ -208,11 +208,14 @@ class TodoApp {
 		audio.play();
 	}
 
-	turnDownGradually(audio) {
-		for (let i = 1; i <= 5; i ++) {
-			let delay = 0;
-			setTimeout(() => audio.volume /= 1.45, delay * i);
-			delay = 0.2;
+	muteGradually(audio) {
+		for (let i = 0; i < 5; i++) {
+			let delay = 200;
+
+			setTimeout(() => {
+				audio.volume /= 3.5;
+				// console.log(audio.volume);
+			}, delay * i);
 		}
 	}
 }
