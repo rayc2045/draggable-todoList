@@ -50,7 +50,12 @@ class TodoApp {
 		this.sortableJS();
 		this.itemsParentEl.onchange = () => this.rearrangeTodoList();
 		this.itemsParentEl.ondragstart = e => e.target.style.height = `${e.target.scrollHeight}px`;
-		this.itemsParentEl.ondragend = () => this.updateTasks(); // Already set .item {height: auto} in CSS, so directly update tasks after dragging
+		this.itemsParentEl.ondragend = () => {
+			this.itemEls.forEach(el => {
+				el.removeAttribute('draggable');
+				el.removeAttribute('style'); // .item's default height is auto in CSS, so directly remove inline-css attributes
+			});
+		};
 
 		// Handle sound and content edit
 		this.itemsParentEl.onmousedown = e => {
@@ -62,6 +67,7 @@ class TodoApp {
 				e.target.closest('.item').removeAttribute('style');
 				e.target.onblur = e => {
 					if (!e.target.textContent.trim()) return this.deleteTask(e);
+					e.target.removeAttribute('contenteditable');
 					this.saveContent(e);
 				};
 			}
@@ -159,7 +165,6 @@ class TodoApp {
 		const index = e.target.closest('.item').id.replace(/item_/g, '');
 		this.todoList[index].task = e.target.textContent.trim();
 		this.setLocalStorage('todoList', this.todoList);
-		this.updateTasks();
 	}
 
 	sortableJS() {

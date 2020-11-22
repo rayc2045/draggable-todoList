@@ -73,10 +73,9 @@ body
 .wrapper
   padding: 30px 14px
 
-.item
+.item // [id^="item_"]
   display: flex
   margin-bottom: 11px
-  height: auto
   &:hover
     .handle, .delete
       opacity: 1
@@ -174,7 +173,7 @@ input[type="checkbox"]
 .dragging
   // +size(320px, 30px)
   width: 320px
-  margin: 2px auto
+  margin: 0 auto
   margin-top: -2px
   margin-bottom: 9px
   border: 2px dashed grey
