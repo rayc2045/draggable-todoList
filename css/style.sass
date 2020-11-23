@@ -116,25 +116,25 @@ input[type="checkbox"]
         border-color: $grey
 
 .check
-  font-size: 22px
   margin-right: -18px
   position: relative
   top: -1px
   left: -15px
+  font-size: 22px
   color: $grey
   opacity: 0
   pointer-events: none
   
 .content
-  +flexLeft
-  color: $black
   margin-left: 8px
   padding: 1.5px
+  +flexLeft
   width: 277px
-  min-height: 25px
   font-size: 18px
   line-height: 1.45
+  color: $black
   border-bottom: solid 0.5px transparent
+  overflow: hidden
   cursor: text
   &:focus
     border-color: $mediumGrey
@@ -155,14 +155,14 @@ input[type="checkbox"]
   color: $mediumGrey
   input
     margin-left: 4px
-    border: none
-    background-color: transparent
-    color: $mediumGrey
-    border-bottom: solid 1px $lightGrey
     padding: 4px
     padding-left: 2px
     width: 274px
     font-size: 17px
+    color: $mediumGrey
+    background-color: transparent
+    border: none
+    border-bottom: solid 1px $lightGrey
     cursor: text
     transition: 0.2s
     &:focus
@@ -172,15 +172,15 @@ input[type="checkbox"]
 
 .dragging
   // +size(320px, 30px)
-  width: 320px
   margin: 0 auto
   margin-top: -2px
   margin-bottom: 9px
+  width: 320px
   border: 2px dashed grey
   border-radius: 5px
   .handle, input[type="checkbox"], .check, .content
-    opacity: 0
     color: transparent
+    opacity: 0
 
 @media screen and (min-width: 1281px)
   .todo-list

@@ -159,10 +159,12 @@ class TodoApp {
 
 	editEnable(e) {
 		e.target.contentEditable = 'true';
+		e.target.style.overflow = 'visible';
 	}
 
 	editDisable(e) {
 		e.target.removeAttribute('contenteditable');
+		e.target.removeAttribute('style');
 	}
 
 	saveContent(e) {
