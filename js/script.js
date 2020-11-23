@@ -209,11 +209,11 @@ class TodoApp {
 	}
 
 	muteGradually(audio) {
-		for (let i = 0; i < 5; i++) {
-			let delay = 200;
+		for (let i = 0; i < 10; i++) {
+			let delay = 50;
 
 			setTimeout(() => {
-				audio.volume /= 3.5;
+				audio.volume /= 1.65;
 				// console.log(audio.volume);
 			}, delay * i);
 		}
