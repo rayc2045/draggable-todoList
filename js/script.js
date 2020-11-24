@@ -4,19 +4,19 @@ class TodoApp {
 	constructor() {
 		this.todoList = JSON.parse(localStorage.getItem('todoList')) || [
 			{
-				task: '可使用任務左側 ": :" 符號拖曳項目',
+				task: '可使用任務左側 ": :" 符號拖曳項目、右側 "✕" 符號刪除項目',
 				completed: false
 			},
 			{
-				task: '可使用任務右側 "✕" 符號刪除項目',
+				task: '點擊任務後即可進行編輯，完成後按下 "Enter" 鍵將保存紀錄',
 				completed: false
 			},
 			{
-				task: '點擊任務後可自由進行編輯，編輯完成後輸入 "Enter" 將保存紀錄',
+				task: '點擊任務查看如何 "<a href="https://github.com/rayc2045" target="_blank" rel="noreferrer noopener">附加網址</a>"',
 				completed: false
 			},
 			{
-				task: '自動儲存機制將保留任何更動',
+				task: '任何更動將自動儲存，關掉網頁也不丟失紀錄',
 				completed: false
 			},
 			{
@@ -70,7 +70,7 @@ class TodoApp {
 		this.itemsParentEl.onkeydown = e => {
 			if (e.target.classList.contains('content')) {
 				if (e.which === 13) return this.newItemInputEl.focus();
-				this.playSound(this.typingSound);
+				this.playSound(this.typingSound, 0.65);
 			}
 		};
 
@@ -84,8 +84,22 @@ class TodoApp {
 		this.newItemInputEl.onkeydown = e => {
 			if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
 			if (e.which === 13) return this.addTask();
-			this.playSound(this.typingSound);
+			this.playSound(this.typingSound, 0.65);
 		};
+	}
+	
+	convertToAnchor(text) {
+		return String(text).replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2"  target="_blank" rel="noreferrer noopener">$1</a>');
+	}
+
+	convertToMarkdown(anchor) {
+		return anchor
+			.replace(/<a.*?href="(.*?)".*?>(.*?)<\/a>/g, '[$2]($1)')
+			.replace(/&nbsp;/g, '')
+			.replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&quot;/g, '"');
 	}
 
 	updateTasks() {
@@ -99,7 +113,7 @@ class TodoApp {
         <div class="handle">: :</div>
         <input type="checkbox"${this.todoList[i].completed ? ' checked' : ''}>
         <div class="check">✓</div>
-        <div class="content">${this.todoList[i].task}</div>
+        <div class="content">${this.convertToAnchor(this.todoList[i].task)}</div>
         <div class="delete">✕</div>`;
 			this.itemsParentEl.appendChild(item);
 		}
@@ -115,7 +129,7 @@ class TodoApp {
 
 	addTask() {
 		const input = this.newItemInputEl.value.trim();
-		if (!input) return;
+		if (!input) return this.newItemInputEl.value = '';
 		this.todoList.push({ task: input, completed: false });
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
@@ -130,7 +144,7 @@ class TodoApp {
 
 	deleteTask(e) {
 		const item = e.target.closest('.item');
-		const index = item.id.replace(/item_/g, '');
+		const index = item.id.replace('item_', '');
 
 		this.todoList.splice(index, 1);
 		this.todoList.length
@@ -143,7 +157,7 @@ class TodoApp {
 
 	toggleComplete(e) {
 		e.preventDefault(); // Prevent trigging itemsParentEl onchange event sound
-		const index = e.target.closest('.item').id.replace(/item_/g, '');
+		const index = e.target.closest('.item').id.replace('item_', '');
 		this.todoList[index].completed = !this.todoList[index].completed;
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
@@ -154,16 +168,18 @@ class TodoApp {
 	editEnable(e) {
 		e.target.contentEditable = 'true';
 		e.target.style.overflow = 'visible';
+		e.target.innerHTML = this.convertToMarkdown(e.target.innerHTML);
 	}
 
 	editDisable(e) {
 		e.target.removeAttribute('contenteditable');
 		e.target.removeAttribute('style');
+		e.target.innerHTML = this.convertToAnchor(e.target.innerHTML);
 	}
 
 	saveContent(e) {
-		const index = e.target.closest('.item').id.replace(/item_/g, '');
-		this.todoList[index].task = e.target.textContent.trim();
+		const index = e.target.closest('.item').id.replace('item_', '');
+		this.todoList[index].task = e.target.innerHTML;
 		this.setLocalStorage('todoList', this.todoList);
 	}
 
@@ -183,7 +199,7 @@ class TodoApp {
 	rearrangeTodoList() {
 		for (const i in this.todoList) {
 			this.todoList[i].completed = this.itemEls[i].childNodes[3].checked;
-			this.todoList[i].task = this.itemEls[i].childNodes[7].textContent;
+			this.todoList[i].task = this.convertToMarkdown(this.itemEls[i].childNodes[7].innerHTML);
 			this.setLocalStorage('todoList', this.todoList);
 			this.itemEls[i].id = `item_${i}`;
 			this.playSound(this.dropSound);
