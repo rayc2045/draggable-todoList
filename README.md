@@ -7,6 +7,7 @@
 - 使用預處理器 Sass 撰寫 CSS，使用 JavaScript `class` 物件導向式開發
 - 使用 [LocalStorage](https://developer.mozilla.org/zh-TW/docs/Web/API/Window/localStorage) 儲存 To-do List 資料，再搭配模板和三元運算子輸出，關掉瀏覽器也不怕任務丟失！
 - 使用 HTML 屬性 `contenteditable` 做出即時編輯功能，並藉由 JS 切換 `true` 與 `false` 值，解決任何複製貼上的格式問題
+- 加入 [Markdown/anchor 轉譯](https://dev.to/mattkenefick/regex-convert-markdown-links-to-html-anchors-f7j) 功能，輕鬆地讓任務附帶網址連結
 - 設計上讓文字編輯時加入底線，提升使用者操作流暢度
 - 淡化勾選方塊顏色，讓視線更集中於任務
 - 任務超過十項鎖住輸入：好的代辦事項在於清楚、必要和可完成性，所以將清單塞滿不見得是好事；鎖住輸入讓使用者能更適切地為一整天規劃安排
