@@ -28,18 +28,11 @@ class TodoApp {
 		this.itemEls = this.itemsParentEl.childNodes;
 		this.newItemInputEl = document.querySelector('.new-item-input');
 		this.maxTaskNumber = 10;
-		this.accomplishSound = new Audio(
-			'https://github.com/rayc2045/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/BOTW_Fanfare_SmallItem.wav?raw=true'
-		); // ../audio/BOTW_Fanfare_SmallItem.wav
-		this.deleteSound = new Audio(
-			'https://github.com/rayc2045/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/BotW_Interact_sound.mp3?raw=true'
-		); // ../audio/BotW_Interact_sound.mp3
-		this.dragSound = new Audio(
-			'https://github.com/rayc2045/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/drag.mp3?raw=true'
-		); // ../audio/drag.mp3
-		this.dropSound = new Audio(
-			'https://github.com/rayc2045/f2e-portfolio/blob/master/06%20-%20%E5%8F%AF%E6%8B%96%E6%8B%89%E4%BB%BB%E5%8B%99%E7%9A%84%20LocalStorage%20%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E6%B8%85%E5%96%AE/audio/drop.mp3?raw=true'
-		); // ../audio/drop.mp3
+		this.typingSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/typing.mp3');
+		this.accomplishSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BOTW_Fanfare_SmallItem.wav');
+		this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BotW_Interact_sound.mp3');
+		this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drag.mp3');
+		this.dropSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drop.mp3');
 		this.events();
 	}
 
@@ -75,9 +68,9 @@ class TodoApp {
 
 		// Enter => blur => content save (line 68)
 		this.itemsParentEl.onkeydown = e => {
-			if (e.target.classList.contains('content') && e.which === 13) {
-				// e.target.blur();
-				this.newItemInputEl.focus();
+			if (e.target.classList.contains('content')) {
+				if (e.which === 13) return this.newItemInputEl.focus();
+				this.playSound(this.typingSound);
 			}
 		};
 
@@ -90,7 +83,8 @@ class TodoApp {
 		// Add task
 		this.newItemInputEl.onkeydown = e => {
 			if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
-			if (e.which === 13) this.addTask();
+			if (e.which === 13) return this.addTask();
+			this.playSound(this.typingSound);
 		};
 	}
 
