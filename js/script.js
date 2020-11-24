@@ -28,7 +28,6 @@ class TodoApp {
 		this.itemEls = this.itemsParentEl.childNodes;
 		this.newItemInputEl = document.querySelector('.new-item-input');
 		this.maxTaskNumber = 10;
-		this.typingSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/typing.mp3');
 		this.accomplishSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BOTW_Fanfare_SmallItem.wav');
 		this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BotW_Interact_sound.mp3');
 		this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drag.mp3');
@@ -68,9 +67,9 @@ class TodoApp {
 
 		// Enter => blur => content save (line 68)
 		this.itemsParentEl.onkeydown = e => {
-			if (e.target.classList.contains('content')) {
-				if (e.which === 13) return this.newItemInputEl.focus();
-				this.playSound(this.typingSound, 0.65);
+			if (e.target.classList.contains('content') && e.which === 13) {
+				// e.target.blur();
+				this.newItemInputEl.focus();
 			}
 		};
 
@@ -83,11 +82,10 @@ class TodoApp {
 		// Add task
 		this.newItemInputEl.onkeydown = e => {
 			if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
-			if (e.which === 13) return this.addTask();
-			this.playSound(this.typingSound, 0.65);
+			if (e.which === 13) this.addTask();
 		};
 	}
-	
+
 	convertToAnchor(text) {
 		return String(text).replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2"  target="_blank" rel="noreferrer noopener">$1</a>');
 	}
