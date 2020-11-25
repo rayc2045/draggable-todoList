@@ -41,7 +41,7 @@ class TodoApp {
 		// Drag , drop and rearrange
 		this.sortableJS();
 		this.itemsParentEl.onchange = () => this.rearrangeTodoList(); // Using change event instead of dragend event makes tasks arrange when any task being dragged outside the parent element
-		this.itemsParentEl.ondragstart = e => e.target.style.height = `${e.target.scrollHeight}px`;
+		this.itemsParentEl.ondragstart = e => (e.target.style.height = `${e.target.scrollHeight}px`);
 		this.itemsParentEl.ondragend = () => {
 			this.itemEls.forEach(el => {
 				el.removeAttribute('draggable');
@@ -94,9 +94,9 @@ class TodoApp {
 	pasteCleanText(e) {
 		e.preventDefault();
 		let paste = (e.clipboardData || window.clipboardData).getData('text');
-    const selection = window.getSelection();
-    if (!selection.rangeCount) return false;
-    selection.deleteFromDocument();
+		const selection = window.getSelection();
+		if (!selection.rangeCount) return false;
+		selection.deleteFromDocument();
 		selection.getRangeAt(0).insertNode(document.createTextNode(paste));
 		if (selection.empty) return selection.empty(); // Chrome
 		if (selection.removeAllRanges) selection.removeAllRanges(); // Firefox
@@ -143,7 +143,7 @@ class TodoApp {
 
 	addTask() {
 		const input = this.newItemInputEl.value.trim();
-		if (!input) return this.newItemInputEl.value = '';
+		if (!input) return (this.newItemInputEl.value = '');
 		this.todoList.push({ task: input, completed: false });
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
@@ -159,8 +159,8 @@ class TodoApp {
 	deleteTask(e) {
 		const item = e.target.closest('.item');
 		const index = item.id.replace('item_', '');
-
 		this.todoList.splice(index, 1);
+
 		this.todoList.length
 			? this.setLocalStorage('todoList', this.todoList)
 			: this.removeFromLocalStorage('todoList');
@@ -223,7 +223,7 @@ class TodoApp {
 	}
 
 	removeFromLocalStorage(title) {
-		localStorage.removeItem(title); // It's not localStorage.clear()
+		localStorage.removeItem(title); // removeItem() deletes item, clear() empties item
 	}
 
 	playSound(audio, volume = 1) {
