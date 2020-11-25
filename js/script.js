@@ -65,6 +65,11 @@ class TodoApp {
 			}
 		};
 
+		// Paste with clean text
+		this.itemsParentEl.onpaste = e => {
+			if (e.target.classList.contains('content')) this.pasteCleanText(e);
+		};
+
 		// Enter => blur => content save (line 68)
 		this.itemsParentEl.onkeydown = e => {
 			if (e.target.classList.contains('content') && e.which === 13) {
@@ -84,6 +89,17 @@ class TodoApp {
 			if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
 			if (e.which === 13) this.addTask();
 		};
+	}
+
+	pasteCleanText(e) {
+		e.preventDefault();
+		let paste = (e.clipboardData || window.clipboardData).getData('text');
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return false;
+    selection.deleteFromDocument();
+		selection.getRangeAt(0).insertNode(document.createTextNode(paste));
+		if (selection.empty) return selection.empty(); // Chrome
+		if (selection.removeAllRanges) selection.removeAllRanges(); // Firefox
 	}
 
 	convertToAnchor(text) {
@@ -165,13 +181,11 @@ class TodoApp {
 
 	editEnable(e) {
 		e.target.contentEditable = 'true';
-		e.target.style.overflow = 'visible';
 		e.target.innerHTML = this.convertToMarkdown(e.target.innerHTML);
 	}
 
 	editDisable(e) {
 		e.target.removeAttribute('contenteditable');
-		e.target.removeAttribute('style');
 		e.target.innerHTML = this.convertToAnchor(e.target.innerHTML);
 	}
 
