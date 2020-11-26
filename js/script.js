@@ -4,7 +4,11 @@ class TodoApp {
 	constructor() {
 		this.todoList = JSON.parse(localStorage.getItem('todoList')) || [
 			{
-				task: '可使用任務左側 ": :" 符號拖曳項目、右側 "✕" 符號刪除項目',
+				task: '可使用任務左側 ": :" 符號拖曳項目',
+				completed: false
+			},
+			{
+				task: '可使用任務右側 "✕" 符號刪除項目',
 				completed: false
 			},
 			{
