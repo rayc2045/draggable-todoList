@@ -1,6 +1,6 @@
 [![Photo](https://cdn.dribbble.com/users/3800131/screenshots/6757018/_____2019-07-09___11.03.44_4x.png)](https://dribbble.com/raychangdesign)
 
-# Draggable LocalStorage To-do List
+# Draggable To-do List
 
 > 原本預計做一個和 Todo MVC 類似的簡易待辦事項清單，但做到後面，不斷調整和優化外觀設計、使用 SortableJS 做出拖拉排序的功能，並且將 To-do List 與 LocalStorage 結合，做出了可在瀏覽器上儲存資料的版本。最後再加入了操作音效和快取，讓你達成任務時充滿成就感！
 
