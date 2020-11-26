@@ -12,7 +12,7 @@ class TodoApp {
 				completed: false
 			},
 			{
-				task: '點擊任務查看如何 <a href="https://github.com/rayc2045" target="_blank" rel="noreferrer noopener">附加連結</a>',
+				task: '點擊任務查看如何 [附加連結](https://github.com/rayc2045)',
 				completed: false
 			},
 			{
@@ -93,11 +93,11 @@ class TodoApp {
 
 	pasteCleanText(e) {
 		e.preventDefault();
-		let paste = (e.clipboardData || window.clipboardData).getData('text');
+		let pasteText = (e.clipboardData || window.clipboardData).getData('text');
 		const selection = window.getSelection();
 		if (!selection.rangeCount) return false;
 		selection.deleteFromDocument();
-		selection.getRangeAt(0).insertNode(document.createTextNode(paste));
+		selection.getRangeAt(0).insertNode(document.createTextNode(pasteText));
 		if (selection.empty) return selection.empty(); // Chrome
 		if (selection.removeAllRanges) selection.removeAllRanges(); // Firefox
 	}
@@ -117,6 +117,7 @@ class TodoApp {
 	// 	];
 
 	// 	xssScript.forEach((str, idx) => {
+	// 		// str === str.replace(/(<([^>]+)>)/gi, '').replace(/%3C/gi, '')
 	// 		str === str.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1').replace(/%3C/gi, '')
 	// 			? console.log(`${idx}. failed: ${str}`)
 	// 			: console.log(`${idx}. success`);;
@@ -125,23 +126,21 @@ class TodoApp {
 
 	convertToAnchor(text) {
 		// console.log('convertToAnchor()');
-		return String(text)
-			.replace(/&nbsp;/g, ' ')
-			.replace(/&amp;/g, '&')
-			.replace(/&lt;/g, '<')
-			.replace(/&gt;/g, '>')
-			.replace(/&quot;/g, '"')
-			.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1') // tags except <a>
-			.replace(/%3C/gi, '')
+		return this.getFilteredText(text)
+			.replace(/(<([^>]+)>)/gi, '') // Remove HTML tags
 			.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer noopener">$1</a>');
 	}
 
 	convertToMarkdown(anchor) {
 		// console.log('convertToMarkdown()');
-		return anchor
-			.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1') // tags except <a>
+		return this.getFilteredText(anchor)
+			.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1') // Remain <a> tags
+			.replace(/<a.*?href="(.*?)".*?>(.*?)<\/a>/g, '[$2]($1)');
+	}
+
+	getFilteredText(text) {
+		return String(text)
 			.replace(/%3C/gi, '')
-			.replace(/<a.*?href="(.*?)".*?>(.*?)<\/a>/g, '[$2]($1)')
 			.replace(/&nbsp;/g, ' ')
 			.replace(/&amp;/g, '&')
 			.replace(/&lt;/g, '<')
@@ -177,7 +176,12 @@ class TodoApp {
 	addTask() {
 		const input = this.newItemInputEl.value.trim();
 		if (!input) return (this.newItemInputEl.value = '');
-		this.todoList.push({ task: input, completed: false });
+
+		this.todoList.push({
+			task: this.getFilteredText(input).replace(/(<([^>]+)>)/gi, ''),
+			completed: false
+		});
+
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
 		this.newItemInputEl.value = '';
