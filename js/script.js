@@ -20,7 +20,7 @@ class TodoApp {
 				completed: false
 			},
 			{
-				task: '開始新增您的第一項任務 🙂',
+				task: '使用 [1-3-5 法則](https://www.themuse.com/advice/a-better-todo-list-the-135-rule) 聚焦您一天的重心，並開始新增第一項任務 🙂',
 				completed: false
 			}
 		];
