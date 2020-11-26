@@ -103,13 +103,23 @@ class TodoApp {
 	}
 
 	convertToAnchor(text) {
-		return String(text).replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2"  target="_blank" rel="noreferrer noopener">$1</a>');
+		// console.log('convertToAnchor()');
+		return String(text)
+			.replace(/&nbsp;/g, ' ')
+			.replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&quot;/g, '"')
+			.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1') // tags except <a>
+			.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer noopener">$1</a>');
 	}
 
 	convertToMarkdown(anchor) {
+		// console.log('convertToMarkdown()');
 		return anchor
+			.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1') // tags except <a>
 			.replace(/<a.*?href="(.*?)".*?>(.*?)<\/a>/g, '[$2]($1)')
-			.replace(/&nbsp;/g, '')
+			.replace(/&nbsp;/g, ' ')
 			.replace(/&amp;/g, '&')
 			.replace(/&lt;/g, '<')
 			.replace(/&gt;/g, '>')
@@ -182,16 +192,19 @@ class TodoApp {
 	editEnable(e) {
 		e.target.contentEditable = 'true';
 		e.target.innerHTML = this.convertToMarkdown(e.target.innerHTML);
+		// console.log('editEnable() => innerHTML: ', e.target.innerHTML);
 	}
 
 	editDisable(e) {
 		e.target.removeAttribute('contenteditable');
 		e.target.innerHTML = this.convertToAnchor(e.target.innerHTML);
+		// console.log('editDisable() => innerHTML: ', e.target.innerHTML);
 	}
 
 	saveContent(e) {
 		const index = e.target.closest('.item').id.replace('item_', '');
-		this.todoList[index].task = e.target.innerHTML;
+		this.todoList[index].task = this.convertToMarkdown(e.target.innerHTML);
+		// console.log('saveContent() => task: ', this.todoList[index].task);
 		this.setLocalStorage('todoList', this.todoList);
 	}
 
