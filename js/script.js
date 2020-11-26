@@ -8,11 +8,11 @@ class TodoApp {
 				completed: false
 			},
 			{
-				task: '點擊任務後即可進行編輯，完成後按下 "Enter" 鍵將保存紀錄',
+				task: '點擊任務後即可進行編輯，完成後按下 Enter 鍵將保存紀錄',
 				completed: false
 			},
 			{
-				task: '點擊任務查看如何 "<a href="https://github.com/rayc2045" target="_blank" rel="noreferrer noopener">附加網址</a>"',
+				task: '點擊任務查看如何 <a href="https://github.com/rayc2045" target="_blank" rel="noreferrer noopener">附加連結</a>',
 				completed: false
 			},
 			{
