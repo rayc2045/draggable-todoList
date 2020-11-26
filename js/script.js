@@ -102,6 +102,27 @@ class TodoApp {
 		if (selection.removeAllRanges) selection.removeAllRanges(); // Firefox
 	}
 
+	// testXSS() {
+	// 	const xssScript = [
+	// 		`><script>alert(document.cookie)</script>`,
+	// 		`='><script>alert(document.cookie)</script>`,
+	// 		`"><script>alert(document.cookie)</script>`,
+	// 		`<script>alert(document.cookie)</script>`,
+	// 		`<script>alert('vulnerable')</script>`,
+	// 		`%3Cscript%3Ealert('XSS')%3C/script%3E`,
+	// 		`<script>alert('XSS')</script>`,
+	// 		`<img src="javascript:alert('XSS')">`,
+	// 		`<img src="http://888.888.com/999.png" onerror="alert('XSS')">`,
+	// 		`<div style="height:expression(alert('XSS'),1)"></div>`
+	// 	];
+
+	// 	xssScript.forEach((str, idx) => {
+	// 		str === str.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1').replace(/%3C/gi, '')
+	// 			? console.log(`${idx}. failed: ${str}`)
+	// 			: console.log(`${idx}. success`);;
+	// 	});
+	// }
+
 	convertToAnchor(text) {
 		// console.log('convertToAnchor()');
 		return String(text)
@@ -111,6 +132,7 @@ class TodoApp {
 			.replace(/&gt;/g, '>')
 			.replace(/&quot;/g, '"')
 			.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1') // tags except <a>
+			.replace(/%3C/gi, '')
 			.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer noopener">$1</a>');
 	}
 
@@ -118,6 +140,7 @@ class TodoApp {
 		// console.log('convertToMarkdown()');
 		return anchor
 			.replace(/(<\/?(?:a)[^>]*>)|<[^>]+>/gi, '$1') // tags except <a>
+			.replace(/%3C/gi, '')
 			.replace(/<a.*?href="(.*?)".*?>(.*?)<\/a>/g, '[$2]($1)')
 			.replace(/&nbsp;/g, ' ')
 			.replace(/&amp;/g, '&')
