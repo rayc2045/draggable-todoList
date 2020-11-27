@@ -53,7 +53,7 @@ class TodoApp {
 		this.itemsParentEl.ondragend = () => {
 			this.itemEls.forEach(el => {
 				el.removeAttribute('draggable');
-				el.removeAttribute('style'); // .item's default height is auto, so directly remove inline-css attributes
+				el.removeAttribute('style');
 			});
 		};
 
@@ -62,9 +62,10 @@ class TodoApp {
 			if (e.target.classList.contains('handle')) return this.playSound(this.dragSound);
 			if (e.target.classList.contains('content')) {
 				this.editEnable(e);
-				// When mousedown on the handle, but not drag the item(or drag it outside the to-do list), the codes start from line 53 may not active
+				// When mousedown on the handle, but not drag the item(or drag it outside the to-do list), the codes start from line 54 may not active
 				e.target.closest('.item').removeAttribute('draggable');
 				e.target.closest('.item').removeAttribute('style');
+
 				e.target.onblur = e => {
 					if (!e.target.textContent.trim()) return this.deleteTask(e);
 					this.saveContent(e);
@@ -75,10 +76,10 @@ class TodoApp {
 
 		// Paste with clean text
 		this.itemsParentEl.onpaste = e => {
-			if (e.target.classList.contains('content')) this.pasteCleanText(e);
+			if (e.target.classList.contains('content')) this.pastePlainText(e);
 		};
 
-		// Enter => blur => content save (line 68)
+		// Enter => blur => content save (line 69)
 		this.itemsParentEl.onkeydown = e => {
 			if (e.target.classList.contains('content') && e.which === 13) {
 				// e.target.blur();
