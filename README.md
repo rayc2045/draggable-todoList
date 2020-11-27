@@ -6,7 +6,7 @@
 
 - 使用預處理器 Sass 撰寫 CSS，使用 JavaScript `class` 物件導向式開發
 - 設計上淡化勾選方塊顏色，並選用較密集的 [Roboto Condensed](https://fonts.google.com/specimen/Roboto+Condensed) 字體，讓視線更集中於任務
-- 使用 HTML 屬性 `contenteditable` 達成即時編輯，並且在貼上文字時 [清除複製來源的文字格式](https://developer.mozilla.org/zh-CN/docs/Web/Events/paste)
+- 使用 HTML 屬性 `contenteditable` 達成即時編輯，並且在貼上文字時使用 [`HTML DOM execCommand()` 方法](https://www.w3schools.com/jsref/met_document_execcommand.asp) 達成純文字貼上
 - 加入 [Markdown Link 轉譯](https://dev.to/mattkenefick/regex-convert-markdown-links-to-html-anchors-f7j) 功能，讓使用者能夠輕鬆地使用 Markdown 語法創造附帶網址連結的任務
 - 對使用者輸入和輸出做 [過濾處理](https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/)，[避免 XSS 跨網站指令碼注入](https://gomakethings.com/preventing-cross-site-scripting-attacks-when-using-innerhtml-in-vanilla-javascript/)
 - 任務超過十項鎖住輸入：好的待辦事項在於清楚、必要和可完成性，重新檢視待辦事項清單讓我們能更適切地為一整天規劃安排
