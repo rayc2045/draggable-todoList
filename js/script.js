@@ -4,6 +4,10 @@ class TodoApp {
 	constructor() {
 		this.todoList = JSON.parse(localStorage.getItem('todoList')) || [
 			{
+				task: '註記完成的任務會以刪除線表示',
+				completed: true
+			},
+			{
 				task: '可使用任務左側 ": :" 符號拖曳項目',
 				completed: false
 			},
@@ -16,7 +20,7 @@ class TodoApp {
 				completed: false
 			},
 			{
-				task: '點擊任務查看如何 [附加連結](https://github.com/rayc2045)',
+				task: '點擊此任務查看如何 [附加連結](https://github.com/rayc2045)',
 				completed: false
 			},
 			{
