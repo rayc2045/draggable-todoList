@@ -99,15 +99,13 @@ class TodoApp {
 		};
 	}
 
-	pasteCleanText(e) {
+	pastePlainText(e) {
 		e.preventDefault();
-		let pasteText = (e.clipboardData || window.clipboardData).getData('text');
-		const selection = window.getSelection();
-		if (!selection.rangeCount) return false;
-		selection.deleteFromDocument();
-		selection.getRangeAt(0).insertNode(document.createTextNode(pasteText));
-		if (selection.empty) return selection.empty(); // Chrome
-		if (selection.removeAllRanges) selection.removeAllRanges(); // Firefox
+		let text = (e.clipboardData || window.clipboardData).getData('text/plain');
+
+		document.queryCommandSupported('insertText')
+			? document.execCommand('insertText', false, text)
+			: document.execCommand('paste', false, text);
 	}
 
 	// testXSS() {
