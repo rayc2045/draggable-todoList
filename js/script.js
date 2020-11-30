@@ -20,7 +20,7 @@ class TodoApp {
 				completed: false
 			},
 			{
-				task: '點擊此任務查看如何 [附加連結](https://github.com/rayc2045)',
+				task: '點擊此任務查看如何 [附加連結](https://rayc2045.github.io/raychang-space/)',
 				completed: false
 			},
 			{
