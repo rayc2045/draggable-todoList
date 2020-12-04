@@ -98,6 +98,9 @@ class TodoApp {
 			if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
 			if (e.which === 13) this.addTask();
 		};
+		this.newItemInputEl.onblur = e => {
+			if (!e.target.value.trim()) e.target.value = '';
+		}
 	}
 
 	pastePlainText(e) {
