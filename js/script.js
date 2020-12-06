@@ -36,10 +36,10 @@ class TodoApp {
 		this.itemEls = this.itemsParentEl.childNodes;
 		this.newItemInputEl = document.querySelector('.new-item-input');
 		this.maxTaskNumber = 10;
-		this.accomplishSound = new Audio('../audio/BOTW_Fanfare_SmallItem.wav');
-		this.deleteSound = new Audio('../audio/BotW_Interact_sound.mp3');
-		this.dragSound = new Audio('../audio/drag.mp3');
-		this.dropSound = new Audio('../audio/drop.mp3');
+		this.accomplishSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BOTW_Fanfare_SmallItem.wav');
+		this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BotW_Interact_sound.mp3');
+		this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drag.mp3');
+		this.dropSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drop.mp3');
 		this.events();
 	}
 
