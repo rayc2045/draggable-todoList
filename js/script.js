@@ -151,6 +151,7 @@ class TodoApp {
 	getFilteredText(text) {
 		return String(text)
 			.replace(/%3C/gi, '')
+			.replace(/%3E/gi, '')
 			.replace(/&nbsp;/g, ' ')
 			.replace(/&amp;/g, '&')
 			.replace(/&lt;/g, '<')
