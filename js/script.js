@@ -46,7 +46,7 @@ class TodoApp {
 			animType: 'svg',
 			loop: false,
 			autoplay: false,
-			path: '/animation/7893-confetti-cannons.json'
+			path: 'https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/animation/7893-confetti-cannons.json'
 		});
 		this.events();
 	}
@@ -108,10 +108,6 @@ class TodoApp {
 		};
 		this.newItemInputEl.onblur = e => {
 			if (!e.target.value.trim()) e.target.value = '';
-		}
-
-		this.confettiAnimation.oncomplete = () => {
-			this.confettiWrapper.classList.add('hide');
 		}
 	}
 
