@@ -40,6 +40,14 @@ class TodoApp {
 		this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BotW_Interact_sound.mp3');
 		this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drag.mp3');
 		this.dropSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drop.mp3');
+		this.confettiWrapper = document.querySelector('#confetti');
+		this.confettiAnimation = bodymovin.loadAnimation({
+			wrapper: this.confettiWrapper,
+			animType: 'svg',
+			loop: false,
+			autoplay: false,
+			path: '/animation/7893-confetti-cannons.json'
+		});
 		this.events();
 	}
 
@@ -100,6 +108,10 @@ class TodoApp {
 		};
 		this.newItemInputEl.onblur = e => {
 			if (!e.target.value.trim()) e.target.value = '';
+		}
+
+		this.confettiAnimation.oncomplete = () => {
+			this.confettiWrapper.classList.add('hide');
 		}
 	}
 
@@ -225,6 +237,7 @@ class TodoApp {
 		this.updateTasks();
 		if (!e.target.checked) return this.muteGradually(this.accomplishSound);
 		this.playSound(this.accomplishSound, 0.35);
+		this.confettiAnimation.goToAndPlay(0, true);
 	}
 
 	editEnable(e) {

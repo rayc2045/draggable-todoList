@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta http-equiv="Cache-control" content="max-age=28800"> <!-- 8hr Cache-->
-  <title>Draggable To-do List</title>
-  <meta name="description" content="Featured by autosave and markdown support">
-  <meta name="keywords" content="todo,list,app,todo app,todolist,待辦事項,待辦清單,待辦事項清單,javascript,js,project">
-  <meta name="author" content="Ray C">
-  <link rel="icon" href="https://avatars1.githubusercontent.com/u/39514595?s=460&v=4">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700">
-  <link rel="stylesheet" href="./css/style.min.css">
-</head>
-<body>
-  <div class="todo-list">
-    <div class="title-block">
-      <h1>To-Do List 待辦事項清單</h1>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Cache-control" content="max-age=28800"><!-- 8hr Cache-->
+    <title>Draggable To-do List</title>
+    <meta name="description" content="Featured by autosave and markdown support">
+    <meta name="keywords" content="todo,list,app,todo app,todolist,待辦事項,待辦清單,待辦事項清單,javascript,js,project">
+    <meta name="author" content="Ray C">
+    <link rel="icon" href="https://avatars1.githubusercontent.com/u/39514595?s=460&v=4">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700">
+    <link rel="stylesheet" href="./css/style.min.css">
+  </head>
+  <body>
+    <div class="todo-list">
+      <div class="title-block">
+        <h1>To-Do List 待辦事項清單</h1>
+      </div>
+      <div class="wrapper">
+        <ul id="sortable" class="items">
+          <!-- <li id="item_0" class="item">...</li> -->
+        </ul>
+        <label class="new-item">
+          ＋<input class="new-item-input" type="text" placeholder="What needs to be done?" autofocus/>
+        </label>
+      </div>
     </div>
-    <div class="wrapper">
-      <ul id="sortable" class="items">
-        <!-- <li id="item_0" class="item">...</li> -->
-      </ul>
-      <label class="new-item">
-        ＋<input class="new-item-input" type="text" placeholder="What needs to be done?" autofocus>
-      </label>
+
+    <div id="confetti" class="hide">
+      <!-- <svg> -->
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/Sortable.min.js"></script>
-  <script src="./js/script.min.js"></script>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
+    <script src="./js/script.min.js"></script>
+  </body>
 </html>
