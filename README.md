@@ -1,4 +1,4 @@
-[![Photo](https://cdn.dribbble.com/users/3800131/screenshots/14655703/media/f45bd7c734c9acc23572c989a9703ef4.png)](https://dribbble.com/raychangdesign)
+[![Photo](https://cdn.dribbble.com/users/3800131/screenshots/14907391/media/3dc70466a4601c6dc866c2adeca8d8c6.gif)](https://dribbble.com/raychangdesign)
 
 # Draggable To-do List
 
