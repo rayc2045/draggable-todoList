@@ -157,7 +157,7 @@ class TodoApp {
 	}
 
 	getFilteredText(text) {
-		return String(text)
+		return this.capitalizeFirstLetter(String(text))
 			.replace(/%3C/gi, '')
 			.replace(/%3E/gi, '')
 			.replace(/&nbsp;/g, ' ')
@@ -165,6 +165,10 @@ class TodoApp {
 			.replace(/&lt;/g, '<')
 			.replace(/&gt;/g, '>')
 			.replace(/&quot;/g, '"');
+	}
+
+	capitalizeFirstLetter(str) {
+		return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 	}
 
 	updateTasks() {
