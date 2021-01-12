@@ -36,10 +36,6 @@ class TodoApp {
 		this.itemEls = this.itemsParentEl.childNodes;
 		this.newItemInputEl = document.querySelector('.new-item-input');
 		this.maxTaskNumber = 10;
-		this.accomplishSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BOTW_Fanfare_SmallItem.wav');
-		this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BotW_Interact_sound.mp3');
-		this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drag.mp3');
-		this.dropSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drop.mp3');
 		this.confettiWrapper = document.querySelector('#confetti');
 		this.confettiAnimation = bodymovin.loadAnimation({
 			wrapper: this.confettiWrapper,
@@ -48,6 +44,10 @@ class TodoApp {
 			autoplay: false,
 			path: 'https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/animation/7893-confetti-cannons.json'
 		});
+		this.accomplishSound = document.querySelector('.accomplishSound');
+		this.deleteSound = document.querySelector('.deleteSound');
+		this.dragSound = document.querySelector('.dragSound');
+		this.dropSound = document.querySelector('.dropSound');
 		this.events();
 	}
 
