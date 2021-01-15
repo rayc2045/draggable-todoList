@@ -44,15 +44,20 @@ class TodoApp {
 			autoplay: false,
 			path: 'https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/animation/7893-confetti-cannons.json'
 		});
-		this.accomplishSound = document.querySelector('.accomplishSound');
-		this.deleteSound = document.querySelector('.deleteSound');
-		this.dragSound = document.querySelector('.dragSound');
-		this.dropSound = document.querySelector('.dropSound');
+		this.accomplishSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BOTW_Fanfare_SmallItem.wav');
+		this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BotW_Interact_sound.mp3');
+		this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drag.mp3');
+		this.dropSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drop.mp3');
+		this.timer;
 		this.events();
 	}
 
 	events() {
 		this.updateTasks();
+		this.accomplishSound.preload = 'auto';
+		this.deleteSound.preload = 'auto';
+		this.dragSound.preload = 'auto';
+		this.dropSound.preload = 'auto';
 
 		// Drag , drop and rearrange
 		this.sortableJS();
@@ -235,6 +240,7 @@ class TodoApp {
 		this.todoList[index].completed = !this.todoList[index].completed;
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
+		this.fakeAudioCatch(this.accomplishSound, 3);
 		if (!e.target.checked) return this.muteGradually(this.accomplishSound);
 		this.playSound(this.accomplishSound, 0.35);
 		this.confettiAnimation.goToAndPlay(0, true);
@@ -305,6 +311,18 @@ class TodoApp {
 				// console.log(audio.volume);
 			}, delay * i);
 		}
+	}
+
+	fakeAudioCatch(audio, minute) {
+		if (typeof this.timer !== 'undefined') clearTimeout(this.timer);
+		// Make a timer to play audio in mute
+		this.timer = setTimeout(() => {
+			console.log(this.timer);
+			audio.currentTime = 0;
+			audio.volume = 0;
+			audio.play();
+			this.fakeAudioCatch(audio, minute);
+		}, minute * 60 * 1000);
 	}
 }
 
