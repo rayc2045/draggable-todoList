@@ -315,9 +315,8 @@ class TodoApp {
 
 	fakeAudioCatch(audio, minute) {
 		if (typeof this.timer !== 'undefined') clearTimeout(this.timer);
-		// Make a timer to play audio in mute
+
 		this.timer = setTimeout(() => {
-			console.log(this.timer);
 			audio.currentTime = 0;
 			audio.volume = 0;
 			audio.play();
