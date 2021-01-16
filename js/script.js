@@ -240,7 +240,6 @@ class TodoApp {
 		this.todoList[index].completed = !this.todoList[index].completed;
 		this.setLocalStorage('todoList', this.todoList);
 		this.updateTasks();
-		this.fakeAudioCatch(this.accomplishSound, 3);
 		if (!e.target.checked) return this.muteGradually(this.accomplishSound);
 		this.playSound(this.accomplishSound, 0.35);
 		this.confettiAnimation.goToAndPlay(0, true);
@@ -325,4 +324,5 @@ class TodoApp {
 	}
 }
 
-new TodoApp();
+const Todo = new TodoApp();
+document.onclick = () => Todo.fakeAudioCatch(Todo.accomplishSound, 3);
