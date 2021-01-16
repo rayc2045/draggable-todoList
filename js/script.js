@@ -58,6 +58,7 @@ class TodoApp {
 		this.deleteSound.preload = 'auto';
 		this.dragSound.preload = 'auto';
 		this.dropSound.preload = 'auto';
+		setTimeout(() => this.fakeAudioCatch(this.accomplishSound, 3), 0);
 
 		// Drag , drop and rearrange
 		this.sortableJS();
@@ -313,6 +314,7 @@ class TodoApp {
 	}
 
 	fakeAudioCatch(audio, minute) {
+		// console.log('counting');
 		if (typeof this.timer !== 'undefined') clearTimeout(this.timer);
 
 		this.timer = setTimeout(() => {
@@ -325,4 +327,7 @@ class TodoApp {
 }
 
 const Todo = new TodoApp();
-document.onclick = () => Todo.fakeAudioCatch(Todo.accomplishSound, 3);
+
+// document.addEventListener('mousemove', debounce(
+// 	() => Todo.fakeAudioCatch(Todo.accomplishSound, 3), 30000)
+// );
