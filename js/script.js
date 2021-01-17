@@ -329,7 +329,7 @@ const Todo = new TodoApp();
 
 document.onmousemove = () => {
 	Todo.fakeAudioCatch(Todo.accomplishSound, 3);
-	document.onmousemove = '';
+	document.onmousemove = null;
 };
 // document.addEventListener('mousemove', debounce(
 // 	() => Todo.fakeAudioCatch(Todo.accomplishSound, 3), 30000)
