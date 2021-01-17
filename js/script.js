@@ -185,8 +185,8 @@ class TodoApp {
 			item.classList.add('item');
 			item.innerHTML = `
         <div class="handle">: :</div>
-        <input type="checkbox" id="complete"${this.todoList[i].completed ? ' checked' : ''}>
-        <label class="check" for="complete">✓</label>
+        <input type="checkbox" id="complete-mark"${this.todoList[i].completed ? ' checked' : ''}>
+        <label class="check" for="complete-mark">✓</label>
         <div class="content">${this.convertToAnchor(this.todoList[i].task)}</div>
         <div class="delete">✕</div>`;
 			this.itemsParentEl.appendChild(item);
