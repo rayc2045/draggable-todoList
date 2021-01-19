@@ -327,6 +327,16 @@ class TodoApp {
 
 const Todo = new TodoApp();
 
+document.onselectstart = e => {
+	try {
+		if (!e.target.classList.contains('content')) {
+			// console.log('Not content');
+			return false;
+		};
+		// console.log('Content');
+	} catch (error) {}
+};
+
 document.onmousemove = () => {
 	Todo.fakeAudioCatch(Todo.accomplishSound, 3);
 	document.onmousemove = null;
