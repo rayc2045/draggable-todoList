@@ -338,6 +338,8 @@ document.onselectstart = (e) => {
 };
 
 document.onmousemove = () => {
-  Todo.fakeAudioCatch(Todo.accomplishSound, 3);
+  try {
+    Todo.fakeAudioCatch(Todo.accomplishSound, 3);
+  } catch (error) {}
   document.onmousemove = null;
 };
