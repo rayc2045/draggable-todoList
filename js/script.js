@@ -34,7 +34,7 @@ class TodoApp {
     ];
     this.itemsParentEl = document.querySelector('.items');
     this.itemEls = this.itemsParentEl.childNodes;
-    this.newItemInputEl = document.querySelector('.new-item-input');
+    this.newItemInputEl = document.querySelector('#new-item-input');
     this.maxTaskNumber = 10;
     this.confettiWrapper = document.querySelector('#confetti');
     this.confettiAnimation = bodymovin.loadAnimation({
