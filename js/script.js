@@ -44,10 +44,11 @@ class TodoApp {
       autoplay: false,
       path: 'https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/animation/7893-confetti-cannons.json',
     });
-    this.accomplishSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BOTW_Fanfare_SmallItem.wav');
-    this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/BotW_Interact_sound.mp3');
-    this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drag.mp3');
-    this.dropSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-localStorage-todoList/master/audio/drop.mp3');
+    this.accomplishSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/audio/BOTW_Fanfare_SmallItem.wav');
+    this.deleteSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/audio/BotW_Interact_sound.mp3');
+    this.dragSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/audio/drag.mp3');
+    this.dropSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/audio/drop.mp3');
+    this.pageSound = new Audio('https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/audio/page.mp3');
     this.timer;
     this.events();
   }
@@ -100,10 +101,11 @@ class TodoApp {
       }
     };
 
-    // Complete and delete task
+    // Complete, delete and link sound
     this.itemsParentEl.onclick = (e) => {
       if (e.target.type === 'checkbox') return this.toggleComplete(e);
-      if (e.target.classList.contains('delete')) this.deleteTask(e);
+      if (e.target.classList.contains('delete')) return this.deleteTask(e);
+      if (e.target.hasAttribute('href')) this.playSound(this.pageSound);
     };
 
     // Add task
