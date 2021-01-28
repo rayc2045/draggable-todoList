@@ -331,11 +331,7 @@ const Todo = new TodoApp();
 
 document.onselectstart = (e) => {
   try {
-    if (!e.target.classList.contains('content')) {
-      // console.log('Not content');
-      return false;
-    }
-    // console.log('Content');
+    if (!e.target.classList.contains('content')) return false;
   } catch (error) {}
 };
 
