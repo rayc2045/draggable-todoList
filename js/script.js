@@ -329,6 +329,11 @@ class TodoApp {
 
 const Todo = new TodoApp();
 
+document.onmousedown = (e) => {
+  if (e.target === document.body)
+    setTimeout(() => Todo.newItemInputEl.focus());
+}
+
 document.onselectstart = (e) => {
   try {
     if (!e.target.classList.contains('content')) return false;
