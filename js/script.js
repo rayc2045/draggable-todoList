@@ -1,6 +1,6 @@
 'use strict';
 
-class TodoApp {
+class Todo {
   constructor() {
     this.todoList = JSON.parse(localStorage.getItem('todoList')) || [
       {
@@ -327,11 +327,11 @@ class TodoApp {
   }
 }
 
-const Todo = new TodoApp();
+const todo = new Todo();
 
 document.onmousedown = (e) => {
   if (e.target === document.body)
-    setTimeout(() => Todo.newItemInputEl.focus());
+    setTimeout(() => todo.newItemInputEl.focus());
 }
 
 document.onselectstart = (e) => {
@@ -342,7 +342,7 @@ document.onselectstart = (e) => {
 
 document.onmousemove = () => {
   try {
-    Todo.fakeAudioCatch(Todo.accomplishSound, 3);
+    todo.fakeAudioCatch(todo.accomplishSound, 3);
   } catch (error) {}
   document.onmousemove = null;
 };
