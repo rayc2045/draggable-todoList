@@ -63,7 +63,8 @@ class Todo {
     // Drag , drop and rearrange
     this.sortableJS();
     this.itemsParentEl.onchange = () => this.rearrangeTodoList(); // Using change event instead of dragend event makes tasks arrange when any task being dragged outside the parent element
-    this.itemsParentEl.ondragstart = (e) => (e.target.style.height = `${e.target.scrollHeight}px`);
+    this.itemsParentEl.ondragstart = (e) =>
+      (e.target.style.height = `${e.target.scrollHeight}px`);
     this.itemsParentEl.ondragend = () => {
       this.itemEls.forEach((el) => {
         el.removeAttribute('draggable');
@@ -84,6 +85,7 @@ class Todo {
           if (!e.target.textContent.trim()) return this.deleteTask(e);
           this.saveContent(e);
           this.editDisable(e);
+          this.newItemInputEl.focus();
         };
       }
     };
@@ -93,12 +95,10 @@ class Todo {
       if (e.target.classList.contains('content')) this.pastePlainText(e);
     };
 
-    // Enter => blur => content save (line 69)
+    // Enter => blur => content save (line 84)
     this.itemsParentEl.onkeydown = (e) => {
-      if (e.target.classList.contains('content') && e.which === 13) {
-        // e.target.blur();
-        this.newItemInputEl.focus();
-      }
+      if (e.target.classList.contains('content') && e.which === 13)
+        this.newItemInputEl.focus(); // e.target.blur();
     };
 
     // Complete, delete and link sound
