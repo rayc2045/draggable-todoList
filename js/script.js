@@ -55,6 +55,10 @@ class Todo {
 
   events() {
     this.updateTasks();
+
+    if (this.itemEls.length < this.maxTaskNumber)
+      this.newItemInputEl.focus(); // Replace input's attribute "autofocus"
+
     this.accomplishSound.preload = 'auto';
     this.deleteSound.preload = 'auto';
     this.dragSound.preload = 'auto';
