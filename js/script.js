@@ -104,17 +104,24 @@ class Todo {
     // Complete, delete and link sound
     this.itemsParentEl.onclick = (e) => {
       if (e.target.type === 'checkbox') return this.toggleComplete(e);
-      if (e.target.classList.contains('delete')) return this.deleteTask(e);
+      if (e.target.classList.contains('delete')) {
+        this.deleteTask(e);
+        if (this.itemEls.length < this.maxTaskNumber)
+          return this.newItemInputEl.focus();
+      }
       if (e.target.hasAttribute('href')) this.playSound(this.pageSound);
     };
 
     // Add task
     this.newItemInputEl.onkeydown = (e) => {
-      if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
       if (e.which === 13) this.addTask();
+      if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
     };
     this.newItemInputEl.onblur = (e) => {
       if (!e.target.value.trim()) e.target.value = '';
+    };
+    this.newItemInputEl.onfocus = (e) => {
+      if (this.itemEls.length >= this.maxTaskNumber) return this.inputDisable(e);
     };
   }
 
@@ -221,6 +228,7 @@ class Todo {
   inputDisable(e) {
     e.preventDefault();
     e.target.value = '';
+    e.target.blur();
   }
 
   deleteTask(e) {
