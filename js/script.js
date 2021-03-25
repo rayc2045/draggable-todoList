@@ -76,6 +76,7 @@ class Todo {
         el.removeAttribute('draggable');
         el.removeAttribute('style');
       });
+      this.newItemInputEl.focus();
     };
 
     // Handle sound and content edit
@@ -109,7 +110,10 @@ class Todo {
 
     // Complete, delete and link sound
     this.itemsParentEl.onclick = (e) => {
-      if (e.target.type === 'checkbox') return this.toggleComplete(e);
+      if (e.target.type === 'checkbox') {
+        this.toggleComplete(e);
+        return this.newItemInputEl.focus();
+      }
       if (e.target.classList.contains('delete')) {
         this.deleteTask(e);
         if (this.itemEls.length < this.maxTaskNumber)
@@ -212,8 +216,7 @@ class Todo {
     if (this.itemEls.length < this.maxTaskNumber) {
       this.newItemLabelEl.removeAttribute('style');
       this.newItemLabelEl.textContent = '＋';
-      this.newItemInputEl.placeholder = 'What needs to be done?';
-      return;
+      return this.newItemInputEl.placeholder = 'What needs to be done?';
     }
     this.newItemLabelEl.style.marginLeft = '2.7px';
     this.newItemLabelEl.style.marginRight = '4px';
