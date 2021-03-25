@@ -34,6 +34,7 @@ class Todo {
     ];
     this.itemsParentEl = document.querySelector('.items');
     this.itemEls = this.itemsParentEl.childNodes;
+    this.newItemLabelEl = document.querySelector('.new-item').querySelector('label');
     this.newItemInputEl = document.querySelector('#new-item-input');
     this.maxTaskNumber = 10;
     this.confettiWrapper = document.querySelector('#confetti');
@@ -55,6 +56,7 @@ class Todo {
 
   events() {
     this.updateTasks();
+    this.setNewItemState();
 
     if (this.itemEls.length < this.maxTaskNumber)
       this.newItemInputEl.focus(); // Replace input's attribute "autofocus"
@@ -204,14 +206,19 @@ class Todo {
         <div class="delete">✕</div>`;
       this.itemsParentEl.appendChild(item);
     }
-
-    this.setPlaceholder(this.maxTaskNumber);
   }
 
-  setPlaceholder(maxNumber) {
-    this.itemEls.length < maxNumber
-      ? (this.newItemInputEl.placeholder = 'What needs to be done?')
-      : (this.newItemInputEl.placeholder = 'Try to make tasks less...');
+  setNewItemState() {
+    if (this.itemEls.length < this.maxTaskNumber) {
+      this.newItemLabelEl.removeAttribute('style');
+      this.newItemLabelEl.textContent = '＋';
+      this.newItemInputEl.placeholder = 'What needs to be done?';
+      return;
+    }
+    this.newItemLabelEl.style.marginLeft = '2.7px';
+    this.newItemLabelEl.style.marginRight = '4px';
+    this.newItemLabelEl.textContent = '—';
+    this.newItemInputEl.placeholder = 'Try to make tasks less...';
   }
 
   addTask() {
@@ -225,6 +232,7 @@ class Todo {
 
     this.setLocalStorage('todoList', this.todoList);
     this.updateTasks();
+    this.setNewItemState();
     this.newItemInputEl.value = '';
     this.playSound(this.dropSound);
   }
@@ -245,6 +253,7 @@ class Todo {
       : this.removeFromLocalStorage('todoList');
 
     this.updateTasks();
+    this.setNewItemState();
     this.playSound(this.deleteSound);
   }
 
