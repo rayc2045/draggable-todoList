@@ -35,7 +35,7 @@ $linkBg: #E7E7E7
 
 html, body
   margin: 0
-  +size(100%)
+  height: 100%
 body
   +flexCenter
   background-color: $yellow
@@ -116,6 +116,7 @@ input[type="checkbox"]
     ~ .content, ~ .content a
       color: $grey
       text-decoration: line-through
+      filter: grayscale(100%)
       transition: 0.2s
       &:focus
         border-color: $grey
