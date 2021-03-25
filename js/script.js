@@ -34,7 +34,7 @@ class Todo {
     ];
     this.itemsParentEl = document.querySelector('.items');
     this.itemEls = this.itemsParentEl.childNodes;
-    this.newItemLabelEl = document.querySelector('.new-item').querySelector('label');
+    this.newItemLabelEl = document.querySelector('.new-item label');
     this.newItemInputEl = document.querySelector('#new-item-input');
     this.maxTaskNumber = 10;
     this.confettiWrapper = document.querySelector('#confetti');
