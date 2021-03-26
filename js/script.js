@@ -197,19 +197,24 @@ class Todo {
 
   updateTasks() {
     this.itemsParentEl.innerHTML = '';
+    for (const i in this.todoList) this.appendTask(i);
+  }
 
-    for (const i in this.todoList) {
-      const item = document.createElement('li');
-      item.id = `item_${i}`;
-      item.classList.add('item');
-      item.innerHTML = `
-        <div class="handle">: :</div>
-        <input type="checkbox" id="complete_${i}"${this.todoList[i].completed ? ' checked' : ''}>
-        <label class="check" for="complete_${i}">✓</label>
-        <div class="content">${this.convertToAnchor(this.todoList[i].task)}</div>
-        <div class="delete">✕</div>`;
-      this.itemsParentEl.appendChild(item);
-    }
+  appendTask(id) {
+    const item = document.createElement('li');
+    item.id = `item_${id}`;
+    item.classList.add('item');
+    item.innerHTML = this.createTaskInnerHTML(id);
+    this.itemsParentEl.appendChild(item);
+  }
+
+  createTaskInnerHTML(id) {
+    return `
+      <div class="handle">: :</div>
+      <input type="checkbox" id="complete_${id}"${this.todoList[id].completed ? ' checked' : ''}>
+      <label class="check" for="complete_${id}">✓</label>
+      <div class="content">${this.convertToAnchor(this.todoList[id].task)}</div>
+      <div class="delete">✕</div>`;
   }
 
   setNewItemState() {
@@ -234,7 +239,7 @@ class Todo {
     });
 
     this.setLocalStorage('todoList', this.todoList);
-    this.updateTasks();
+    this.appendTask(this.todoList.length - 1);
     this.setNewItemState();
     this.newItemInputEl.value = '';
     this.playSound(this.dropSound);
@@ -265,7 +270,7 @@ class Todo {
     const index = e.target.closest('.item').id.replace('item_', '');
     this.todoList[index].completed = !this.todoList[index].completed;
     this.setLocalStorage('todoList', this.todoList);
-    this.updateTasks();
+    e.target.parentNode.innerHTML = this.createTaskInnerHTML(index);
     if (!e.target.checked) return this.muteGradually(this.accomplishSound);
     this.playSound(this.accomplishSound, 0.35);
     this.confettiAnimation.goToAndPlay(0, true);
