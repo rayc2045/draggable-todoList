@@ -34,8 +34,9 @@ class Todo {
     ];
     this.itemsParentEl = document.querySelector('.items');
     this.itemEls = this.itemsParentEl.childNodes;
-    this.newItemLabelEl = document.querySelector('.new-item label');
-    this.newItemInputEl = document.querySelector('#new-item-input');
+    this.newItemEl = document.querySelector('.new-item');
+    this.newItemLabelEl = this.newItemEl.querySelector('label');
+    this.newItemInputEl = this.newItemEl.querySelector('input');
     this.maxTaskNumber = 10;
     this.confettiWrapper = document.querySelector('#confetti');
     this.confettiAnimation = bodymovin.loadAnimation({
@@ -219,16 +220,13 @@ class Todo {
 
   setNewItemElState() {
     if (this.itemEls.length < this.maxTaskNumber) {
-      this.newItemLabelEl.removeAttribute('style');
       this.newItemLabelEl.textContent = '＋';
       this.newItemInputEl.placeholder = 'What needs to be done?';
-      return this.newItemInputEl.removeAttribute('style');
+      return this.newItemEl.classList.remove('forbid');
     }
-    this.newItemLabelEl.style.marginLeft = '2.7px';
-    this.newItemLabelEl.style.marginRight = '4px';
     this.newItemLabelEl.textContent = '—';
     this.newItemInputEl.placeholder = 'Try to make tasks less...';
-    this.newItemInputEl.style.cursor = 'default';
+    this.newItemEl.classList.add('forbid');
   }
 
   addTask() {
