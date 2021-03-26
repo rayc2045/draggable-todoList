@@ -260,7 +260,8 @@ class Todo {
       ? this.setLocalStorage('todoList', this.todoList)
       : this.removeFromLocalStorage('todoList');
 
-    this.updateTasks();
+    item.parentNode.removeChild(item);
+    this.itemEls.forEach((el, idx) => el.id = `item_${idx}`);
     this.setNewItemState();
     this.playSound(this.deleteSound);
   }
