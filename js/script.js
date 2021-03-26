@@ -56,7 +56,7 @@ class Todo {
 
   events() {
     this.updateTasks();
-    this.setNewItemState();
+    this.setNewItemElState();
 
     if (this.itemEls.length < this.maxTaskNumber)
       this.newItemInputEl.focus(); // Replace input's attribute "autofocus"
@@ -217,16 +217,18 @@ class Todo {
       <div class="delete">✕</div>`;
   }
 
-  setNewItemState() {
+  setNewItemElState() {
     if (this.itemEls.length < this.maxTaskNumber) {
       this.newItemLabelEl.removeAttribute('style');
       this.newItemLabelEl.textContent = '＋';
-      return this.newItemInputEl.placeholder = 'What needs to be done?';
+      this.newItemInputEl.placeholder = 'What needs to be done?';
+      return this.newItemInputEl.removeAttribute('style');
     }
     this.newItemLabelEl.style.marginLeft = '2.7px';
     this.newItemLabelEl.style.marginRight = '4px';
     this.newItemLabelEl.textContent = '—';
     this.newItemInputEl.placeholder = 'Try to make tasks less...';
+    this.newItemInputEl.style.cursor = 'default';
   }
 
   addTask() {
@@ -240,7 +242,7 @@ class Todo {
 
     this.setLocalStorage('todoList', this.todoList);
     this.appendTask(this.todoList.length - 1);
-    this.setNewItemState();
+    this.setNewItemElState();
     this.newItemInputEl.value = '';
     this.playSound(this.dropSound);
   }
@@ -262,7 +264,7 @@ class Todo {
 
     item.parentNode.removeChild(item);
     this.itemEls.forEach((el, idx) => el.id = `item_${idx}`);
-    this.setNewItemState();
+    this.setNewItemElState();
     this.playSound(this.deleteSound);
   }
 
