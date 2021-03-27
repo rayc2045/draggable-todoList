@@ -261,7 +261,8 @@ class Todo {
       : this.removeFromLocalStorage('todoList');
 
     item.parentNode.removeChild(item);
-    this.itemEls.forEach((el, idx) => el.id = `item_${idx}`);
+    for (let i = index; i < this.itemEls.length; i++)
+      this.itemEls[i].id = `item_${i}`;
     this.setNewItemElState();
     this.playSound(this.deleteSound);
   }
