@@ -24,21 +24,6 @@ $linkBg: #E7E7E7
   justify-content: start
   align-items: center
 
-*, *:before, *:after
-  margin: 0
-  padding: 0
-  cursor: default
-  outline: none
-  appearance: none
-  font-family: 'Roboto Condensed','微軟正黑體', sans-serif
-  letter-spacing: 0.5px
-
-html, body
-  margin: 0
-  height: 100%
-body
-  +flexCenter
-  background-color: $yellow
 
 ::-webkit-scrollbar
   width: 0
@@ -55,6 +40,21 @@ body
 #gtx-trans // Google Translate Extension
   display: none
 
+*, *:before, *:after
+  margin: 0
+  padding: 0
+  cursor: default
+  outline: none
+  appearance: none
+  font-family: 'Roboto Condensed', '微軟正黑體', sans-serif
+  letter-spacing: 0.5px
+
+.container
+  padding: 5vh 0
+  min-height: 90vh
+  +flexCenter
+  background-color: $yellow
+
 .todo-list
   border: 4px solid $black
   background-color: $white
@@ -63,7 +63,7 @@ body
 .title-block
   margin: 0
   padding: 26px 24px
-  width: 340px
+  // width: 340px
   +flexCenter
   background-color: $red
   border-bottom: 4px solid $black
