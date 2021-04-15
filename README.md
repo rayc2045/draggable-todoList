@@ -1,6 +1,6 @@
 # Draggable To-do List
 
-[![Photo](https://cdn.dribbble.com/users/3800131/screenshots/14907391/media/3dc70466a4601c6dc866c2adeca8d8c6.gif)](https://dribbble.com/raychangdesign)
+[![Photo](https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/demo/marquee_promo_tile.png)](https://dribbble.com/raychangdesign)
 
 > 一開始的版本是和 Todo MVC 類似的簡易待辦事項清單，由於本身的使用需求，不斷調整和優化 Todo 清單的外觀與功能，如使用 SortableJS 做出拖拉排序、結合 LocalStorage 做出儲存機制、Markdown link 語法的支持，以及對 XSS 跨網站指令程式碼的防禦處理。最後再加上動畫和互動音效，讓你達成任務時成就感滿滿！
 
