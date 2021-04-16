@@ -14,6 +14,6 @@
 - 使用 [LocalStorage](https://developer.mozilla.org/zh-TW/docs/Web/API/Window/localStorage) 儲存任務資料，關掉瀏覽器也不怕任務丟失！
 - 使用 [SortableJS](https://github.com/SortableJS/Sortable) 實現任務拖拉 (drag) 功能，並在移動任務的同時達成任務排序和資料儲存
 - 加入新增、拖移、刪除互動音效、甚至是達成任務時的《薩爾達：荒野之息》經典音效；當取消勾選任務時，音效於 0.5 秒內逐步靜音，優化使用體驗
-- 加入 [LottieFiles](https://lottiefiles.com/) SVG 彩蛋動畫，達成任務時成就感滿滿！
+- 加入 [LottieFiles](https://lottiefiles.com/) 的 [SVG 彩蛋動畫](https://youtu.be/svEWeNpx-Sk)，達成任務時成就感滿滿！
 - 透過設定計時器無聲播放音檔進行緩存，音效永不延遲
 - [開始規劃你的一天 🙂](https://rayc2045.github.io/draggable-todoList/)
