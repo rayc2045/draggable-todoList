@@ -362,13 +362,13 @@ const todo = new Todo();
 
 document.onmousedown = (e) => {
   const cls = e.target.classList;
-
   if (
     cls.contains('container') ||
     cls.contains('todo-list') ||
     cls.contains('wrapper') ||
     cls.contains('items') ||
-    cls.contains('item')
+    cls.contains('item') ||
+    cls.contains('new-item')
   )
     setTimeout(() => todo.newItemInputEl.focus());
 }
