@@ -12,16 +12,9 @@ $linkBg: #E7E7E7
   width: $width
   height: $height
 
-@mixin flexCenter
-  display: flex
-  justify-content: center
-  align-items: center
-
-@mixin flexLeft
-  display: flex
-  justify-content: start
-  align-items: center
-
+@mixin gridCenter
+  display: grid
+  place-items: center
 
 ::-webkit-scrollbar
   width: 0
@@ -50,7 +43,7 @@ $linkBg: #E7E7E7
 .container
   padding: 5vh 0
   min-height: 90vh
-  +flexCenter
+  +gridCenter
   background-color: $yellow
 
 .todo-list
@@ -62,14 +55,13 @@ $linkBg: #E7E7E7
   margin: 0
   padding: 26px 24px
   // width: 340px
-  +flexCenter
+  text-align: center
   background-color: $red
   border-bottom: 4px solid $black
   user-select: none
   pointer-events: none
   h1
     margin: 0
-    +flexLeft
     font-size: 32px
     color: $white
     border-bottom: 1.5px solid transparent
@@ -164,10 +156,10 @@ a
 
 .new-item
   padding-left: 20.4px
-  +flexLeft
+  display: flex
+  align-items: center
   font-size: 20px
   color: $mediumGrey
-  pointer-events: none
   &.forbid
     label
       margin-left: 2.7px
