@@ -58,9 +58,7 @@ class Todo {
   events() {
     this.updateTasks();
     this.setNewItemElState();
-
-    if (this.itemEls.length < this.maxTaskNumber)
-      this.newItemInputEl.focus(); // Replace input's attribute "autofocus"
+    this.newItemInputEl.focus(); // Replace input's attribute "autofocus"
 
     this.accomplishSound.preload = 'auto';
     this.deleteSound.preload = 'auto';
@@ -117,8 +115,7 @@ class Todo {
       }
       if (e.target.classList.contains('delete')) {
         this.deleteTask(e);
-        if (this.itemEls.length < this.maxTaskNumber)
-          return this.newItemInputEl.focus();
+        return this.newItemInputEl.focus();
       }
       if (e.target.hasAttribute('href')) this.playSound(this.pageSound);
     };
