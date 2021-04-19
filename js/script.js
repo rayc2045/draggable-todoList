@@ -2,7 +2,7 @@
 
 class Todo {
   constructor() {
-    this.todoList = JSON.parse(localStorage.getItem('todoList')) || [
+    this.todoList = this.getLocalStorage('todoList') || [
       {
         task: '註記完成的任務會以刪除線表示',
         completed: true,
@@ -319,12 +319,16 @@ class Todo {
     }
   }
 
-  setLocalStorage(title, data) {
-    localStorage.setItem(title, JSON.stringify(data));
+  setLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
-  removeFromLocalStorage(title) {
-    localStorage.removeItem(title); // removeItem() deletes item, clear() empties item
+  getLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+
+  removeFromLocalStorage(key) {
+    localStorage.removeItem(key); // removeItem() deletes item, clear() empties item
   }
 
   playSound(audio, volume = 1) {
