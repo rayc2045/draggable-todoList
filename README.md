@@ -4,7 +4,7 @@
 
 > 一開始的版本是和 Todo MVC 類似的簡易待辦事項清單，由於本身的使用需求，不斷調整和優化 Todo 清單的外觀與功能，如使用 SortableJS 做出拖拉排序、結合 LocalStorage 做出儲存機制、Markdown link 語法的支持，以及對 XSS 跨網站指令程式碼的防禦處理。最後再加上動畫和互動音效，讓你達成任務時成就感滿滿！
 
-[![Photo](https://cdn.dribbble.com/users/3800131/screenshots/14655703/media/f45bd7c734c9acc23572c989a9703ef4.png)](https://dribbble.com/raychangdesign)
+<!-- [![Photo](https://cdn.dribbble.com/users/3800131/screenshots/14655703/media/f45bd7c734c9acc23572c989a9703ef4.png)](https://dribbble.com/raychangdesign) -->
 
 - 使用預處理器 Sass 撰寫 CSS，使用 JavaScript `class` 物件導向開發
 - 設計上淡化勾選方塊顏色，並選用較密集的 [Roboto Condensed](https://fonts.google.com/specimen/Roboto+Condensed) 字體，讓視線更集中於任務
