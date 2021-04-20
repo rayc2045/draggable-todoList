@@ -1,9 +1,10 @@
 # Draggable To-do List
 
-[![Photo](https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/demo/marquee_promo_tile.png)](https://dribbble.com/raychangdesign)
-[![Photo](https://cdn.dribbble.com/users/3800131/screenshots/14655703/media/f45bd7c734c9acc23572c989a9703ef4.png)](https://dribbble.com/raychangdesign)
+[![Photo](https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/demo/marquee_promo_tile.png)](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi)
 
 > 一開始的版本是和 Todo MVC 類似的簡易待辦事項清單，由於本身的使用需求，不斷調整和優化 Todo 清單的外觀與功能，如使用 SortableJS 做出拖拉排序、結合 LocalStorage 做出儲存機制、Markdown link 語法的支持，以及對 XSS 跨網站指令程式碼的防禦處理。最後再加上動畫和互動音效，讓你達成任務時成就感滿滿！
+
+[![Photo](https://cdn.dribbble.com/users/3800131/screenshots/14655703/media/f45bd7c734c9acc23572c989a9703ef4.png)](https://dribbble.com/raychangdesign)
 
 - 使用預處理器 Sass 撰寫 CSS，使用 JavaScript `class` 物件導向開發
 - 設計上淡化勾選方塊顏色，並選用較密集的 [Roboto Condensed](https://fonts.google.com/specimen/Roboto+Condensed) 字體，讓視線更集中於任務
@@ -15,6 +16,6 @@
 - 使用 [LocalStorage](https://developer.mozilla.org/zh-TW/docs/Web/API/Window/localStorage) 儲存任務資料，關掉瀏覽器也不怕任務丟失！
 - 使用 [SortableJS](https://github.com/SortableJS/Sortable) 實現任務拖拉 (drag) 功能，並在移動任務的同時達成任務排序和資料儲存
 - 加入新增、拖移、刪除互動音效、甚至是達成任務時的《薩爾達：荒野之息》經典音效；當取消勾選任務時，音效於 0.5 秒內逐步靜音，優化使用體驗
-- 加入 [LottieFiles](https://lottiefiles.com/) 的 [SVG 彩蛋動畫](https://youtu.be/svEWeNpx-Sk)，達成任務時成就感滿滿！
+- 加入 [LottieFiles](https://lottiefiles.com/) 的 SVG 彩蛋動畫，達成任務時成就感滿滿！
 - 透過設定計時器無聲播放音檔進行緩存，音效永不延遲
-- [開始規劃你的一天 🙂](https://rayc2045.github.io/draggable-todoList/)
+- 前往 [Chrome 應用程式商店](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi) 或使用 [網頁版](https://rayc2045.github.io/draggable-todoList/) 開始規劃你的一天 🙂
