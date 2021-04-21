@@ -20,11 +20,11 @@ class Todo {
         completed: false,
       },
       {
-        task: '點擊此任務查看如何 [附加連結](https://rayc.dev/)',
+        task: '任何更動將自動儲存，關掉網頁也不丟失紀錄',
         completed: false,
       },
       {
-        task: '任何更動將自動儲存，關掉網頁也不丟失紀錄',
+        task: '前往 Chrome 應用程式商店下載 [擴充功能](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi)',
         completed: false,
       },
       {
