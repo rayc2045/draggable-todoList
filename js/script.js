@@ -376,6 +376,8 @@ document.onmousedown = (e) => {
     setTimeout(() => todo.newItemInputEl.focus());
 }
 
+document.oncontextmenu = () => false;
+
 document.onselectstart = (e) => {
   try {
     if (!e.target.classList.contains('content')) return false;
