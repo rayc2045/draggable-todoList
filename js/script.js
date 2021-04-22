@@ -60,7 +60,7 @@ class Todo {
     this.setNewItemElState();
 
     if (this.itemEls.length < this.maxTaskNumber)
-      this.newItemInputEl.focus(); // Replace input's attribute "autofocus"
+      setTimeout(() => this.newItemInputEl.focus()); // Replace input's attribute "autofocus")
 
     this.accomplishSound.preload = 'auto';
     this.deleteSound.preload = 'auto';
