@@ -1,4 +1,4 @@
-# Draggable To-do List
+# Draggable To-Do List
 
 [![Photo](https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/demo/marquee_promo_tile.png)](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi)
 
