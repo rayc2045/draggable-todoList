@@ -18,4 +18,4 @@
 - 加入新增、拖移、刪除互動音效、甚至是達成任務時的《薩爾達：荒野之息》經典音效；當取消勾選任務時，音效於 0.5 秒內逐步靜音，優化使用體驗
 - 加入 [LottieFiles](https://lottiefiles.com/) 的 SVG 彩蛋動畫，達成任務時成就感滿滿！
 - 透過設定計時器無聲播放音檔進行緩存，音效永不延遲
-- 前往 [Chrome 應用程式商店](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi) 或使用 [網頁版](https://rayc2045.github.io/draggable-todoList/) 開始規劃你的一天 🙂
+- 前往 Chrome 應用程式商店下載 [擴充功能](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi) 或使用 [網頁版](https://rayc2045.github.io/draggable-todoList/) 開始規劃你的一天 🙂
