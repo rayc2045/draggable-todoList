@@ -93,7 +93,6 @@ class Todo {
           if (!e.target.textContent.trim()) return this.deleteTask(e);
           this.saveContent(e);
           this.editDisable(e);
-          this.newItemInputEl.focus();
         };
       }
     };
