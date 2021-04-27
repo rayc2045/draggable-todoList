@@ -12,7 +12,7 @@ class Todo {
         completed: false,
       },
       {
-        task: '點擊任務後即可進行編輯，完成後按下 Enter/Return 鍵將保存紀錄',
+        task: '點擊任務後即可進行編輯，完成後按下 Enter/Return 鍵保存紀錄',
         completed: false,
       },
       {
