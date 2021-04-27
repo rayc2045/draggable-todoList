@@ -8,15 +8,11 @@ class Todo {
         completed: true,
       },
       {
-        task: '可使用任務左側 ": :" 符號拖曳項目',
+        task: '可使用任務左側 ": :" 符號拖曳項目、右側 "✕" 符號刪除項目',
         completed: false,
       },
       {
-        task: '可使用任務右側 "✕" 符號刪除項目',
-        completed: false,
-      },
-      {
-        task: '點擊任務後即可進行編輯，完成後按下 Enter 鍵將保存紀錄',
+        task: '點擊任務後即可進行編輯，完成後按下 Enter/Return 鍵將保存紀錄',
         completed: false,
       },
       {
