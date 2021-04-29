@@ -15,7 +15,8 @@
 - 加入 [LottieFiles](https://lottiefiles.com/) 的 SVG 彩蛋動畫，達成任務時成就感滿滿！
 
 ### 開發紀錄
-- 使用預處理器 Sass 撰寫 CSS，使用 JavaScript `class` 物件導向開發
+- 使用預處理器 Sass 撰寫 CSS
+- 使用 JavaScript `class` 物件導向開發
 - 使用 HTML 屬性 `contenteditable` 達成即時編輯，並且在貼上文字時使用 [`HTML DOM execCommand()` 方法](https://www.w3schools.com/jsref/met_document_execcommand.asp) 達成純文字貼上
 - 對使用者輸入和輸出做 [過濾處理](https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/)，[避免 XSS 跨網站指令碼注入](https://gomakethings.com/preventing-cross-site-scripting-attacks-when-using-innerhtml-in-vanilla-javascript/)
 - 使用 [LocalStorage](https://developer.mozilla.org/zh-TW/docs/Web/API/Window/localStorage) 儲存任務資料，關掉瀏覽器也不怕任務丟失！
