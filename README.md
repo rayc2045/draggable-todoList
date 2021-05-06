@@ -2,6 +2,12 @@
 
 [![Photo](https://raw.githubusercontent.com/rayc2045/draggable-todoList/master/demo/draggable_todo_list.png)](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi)
 
+<p>
+  <a href="https://www.producthunt.com/posts/draggable-todo" target="_blank">
+    <img style="width: 250px; height: 54px;" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=294817" alt="Draggable Todo on Product Hunt"/>
+  </a>
+</p>
+
 ### 簡介
 一開始的版本是和 Todo MVC 類似的簡易待辦事項清單，由於本身的使用需求，不斷調整和優化 Todo 清單的外觀與功能，如使用 SortableJS 做出拖拉排序、結合 LocalStorage 做出儲存機制、Markdown link 語法的支持，以及對 XSS 跨網站指令程式碼的防禦處理。最後再加上動畫和互動音效，讓你達成任務時成就感滿滿！現在就前往 [Chrome 應用程式商店](https://chrome.google.com/webstore/detail/draggable-to-do-list%EF%BD%9C%E5%8F%AF%E6%8B%96%E6%9B%B3%E7%9A%84/pndehpgkgbajinooeiebnjikfdfgoogi) 或使用 [網頁版](https://rayc2045.github.io/draggable-todoList/) 開始規劃你的一天 🙂
 
